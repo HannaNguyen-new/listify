@@ -11,22 +11,19 @@ header{
     background-color: #7868E6;
     width: 100vw;
     height: 3rem;
+    position: fixed;
+}
+.container{
+    margin: 20vh auto;
+    text-align: center;
 }
 
-.menu-icon{
-    position: absolute;
-    z-index: 1;
-    transform: translate(12px,12px);
-    
-
+.nav-icon{
+    transform: translate(10px,7px);
+    display: inline-block;
 }
 
-.eclipse{
-   transform: translate(8px,8px);
-   display: inline-block;
-}
-
-h3{
+.app-name{
     display: inline-block;
     transform: translateX(20px);
     font-size: 24px;
@@ -34,20 +31,28 @@ h3{
     color: #ffffff;
 }
 
-.list-img{
-   width: 50%;
-   margin: 50% auto;
-}
 
 .stroke{
     display: inline-block;
     position: relative;
     top: -5px;
 }
+.list-img{
+    margin-bottom: 6em;
+}
 
+.instruction{
+    font-size: 18px;
+    color: #A59C9C;
+    padding: 0 0 3em 0;
+
+}
 .create-btn{
-    position: relative;
-    left: 40%;
-    transform: translateY(-20px);
+ 
+    width: 3em;
+    
+}
+.create-btn:hover{
+    cursor: pointer;
 }
 

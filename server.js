@@ -5,8 +5,9 @@ const path = require('path');
 const app = express();
 
 app.use(express.static("public"));
+app.set('view engine',"ejs")
 app.get("/", function(req, res){
-    res.sendFile(path.join(__dirname,"first-page.html"))
+    res.render("first-page.ejs")
 })
 
 
