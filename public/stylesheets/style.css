@@ -133,3 +133,6 @@ header{
     box-shadow:  0 2px 5px rgba(0,0,0,0.5);
     margin-left: 6em;
 }
+.overlay[hidden]{
+    visibility: hidden;
+}
