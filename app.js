@@ -5,8 +5,12 @@ const eachList = require("./controllers/each-list.js")
 const app = express();
 
 app.use(express.static("public"));
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+
 app.use("/each-list", eachList)
 app.set('view engine',"ejs")
+
 app.get("/", function(req, res){
     res.render("pages/first-page.ejs")
 })

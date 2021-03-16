@@ -106,10 +106,11 @@ header{
 .list-name-input-container{
     position: absolute;
     z-index: 2;
+    top: 40vh;
+    left: 10vw;
     box-sizing: border-box;
     width: 80vw;
-    height: 8em;
-    margin: 0 5em;
+    height: 9em;
     background-color: #ffffff;
     box-shadow:  0 2px 6px 2px rgba(0,0,0,0.5);
 }
@@ -129,11 +130,16 @@ header{
 .createList-btn{
     text-decoration: none;
     text-transform: uppercase;
+    text-align: center;
     color: #ffffff;
-    padding: 0.2em 0.6em;
     background-color: #7868E6;
+    width: 8em;
+    padding: 0.5em 0;
     box-shadow:  0 2px 5px rgba(0,0,0,0.5);
-    margin-left: 6em;
+    margin-left: 30%;
+}
+.createList-btn:hover{
+    cursor: pointer;
 }
 .overlay[hidden]{
     visibility: hidden;
