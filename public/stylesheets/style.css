@@ -6,66 +6,18 @@
 
 body{
     background-color: #F3F3F4 ;
-<<<<<<< HEAD
-=======
     font-size: 16px;
     font-family: 'Varela Round', sans-serif;
->>>>>>> 750dfbef108ca4425cb5fd96f03180f5cda15ec0
 }
 header{
     background-color: #7868E6;
     width: 100vw;
     height: 3rem;
-<<<<<<< HEAD
-    position: fixed;
-=======
->>>>>>> 750dfbef108ca4425cb5fd96f03180f5cda15ec0
 }
 .container{
     margin: 20vh auto;
     text-align: center;
 }
-<<<<<<< HEAD
-
-.nav-icon{
-    transform: translate(10px,7px);
-    display: inline-block;
-}
-
-.app-name{
-    display: inline-block;
-    transform: translateX(20px);
-    font-size: 24px;
-    font-family: 'Courgette', cursive;
-    color: #ffffff;
-}
-
-
-.stroke{
-    display: inline-block;
-    position: relative;
-    top: -5px;
-}
-.list-img{
-    margin-bottom: 6em;
-}
-
-.instruction{
-    font-size: 18px;
-    color: #A59C9C;
-    padding: 0 0 3em 0;
-
-}
-.create-btn{
- 
-    width: 3em;
-    
-}
-.create-btn:hover{
-    cursor: pointer;
-}
-
-=======
 .instruction{
     font-size: 18px;
     color: #A59C9C;
@@ -152,10 +104,12 @@ header{
 }
 
 .list-name-input-container{
+    position: absolute;
+    z-index: 2;
     box-sizing: border-box;
-    width: 80%;
+    width: 80vw;
     height: 8em;
-    margin: 40vh auto;
+    margin: 0 5em;
     background-color: #ffffff;
     box-shadow:  0 2px 6px 2px rgba(0,0,0,0.5);
 }
@@ -184,4 +138,3 @@ header{
 .overlay[hidden]{
     visibility: hidden;
 }
->>>>>>> 750dfbef108ca4425cb5fd96f03180f5cda15ec0

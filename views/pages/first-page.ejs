@@ -24,12 +24,11 @@
 
     </main>
 
+    <form class="list-name-input-container" hidden method="POST" action="/each-list">
+        <input class="list-name-input" type="text" placeholder="List name" autofocus name="listName">
+        <a class="createList-btn" type="submit" >Create list</a>
+    </form>
     <div class="overlay" hidden>
-        <form class="list-name-input-container" method="POST">
-            <input class="list-name-input" type="text" placeholder="List name" autofocus name="listName">
-            <a class="createList-btn" href="#">Create list</a>
-        </form>
-
     </div>
 </body>
 
