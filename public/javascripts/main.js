@@ -1,7 +1,10 @@
 const createBtn = document.querySelector(".create-btn");
 const overlay = document.querySelector(".overlay");
 
-
-createBtn.addEventListener("click", function displayOverlay(){
+function toggleOverlay(){
    overlay.toggleAttribute("hidden")
-})
+};
+
+createBtn.addEventListener("click", toggleOverlay);
+overlay.addEventListener("click", toggleOverlay);
+
