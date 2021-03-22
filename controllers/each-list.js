@@ -6,9 +6,8 @@ const createList = require("../models/create-list")
 
 router.post("/",  function(req, res){
    let listName = req.body.listName;
-   console.log(req.body);
    createList(listName);
-   res.send("success");
+   res.render("pages/each-list-page.ejs");
 })
 
 module.exports = router;
