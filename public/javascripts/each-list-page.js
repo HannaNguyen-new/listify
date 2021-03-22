@@ -1,8 +1,9 @@
 
 
 /* each-list-page*/
-import {toggle} from "helpers.js";
-
+function toggle (arr,attribute){
+   arr.forEach(el => el.toggleAttribute(attribute))
+}
 
 const hide = document.querySelector(".hide");
 const show = document.querySelector(".show");

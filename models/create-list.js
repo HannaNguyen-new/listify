@@ -1,9 +1,5 @@
 
    const mongoose = require("mongoose");
-   const url = "mongodb://localhost:27017/listifyDB";
-   mongoose.connect(url,{useNewUrlParser:true, useUnifiedTopology:true})
-   .then(success => console.log("Connected to database"))
-   .catch(err => console.log(err))
 
    const listSchema = new mongoose.Schema({
       _id: mongoose.Schema.Types.ObjectId,
