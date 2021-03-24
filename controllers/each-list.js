@@ -2,10 +2,10 @@
 const create = require("../models/create")
 
 
-
+// Create new list
 exports.createList= function(req, res){
    let listName = req.body.listName;
-   create(listName);
-   res.render("pages/each-list-page.ejs");
+   const list = create(listName);
+  res.redirect(list.url);
 }
 

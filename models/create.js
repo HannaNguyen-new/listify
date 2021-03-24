@@ -11,9 +11,17 @@
       listName : {type: String, required: true},
       itemArray : [itemSchema]
    })
-
+   listSchema
+   .virtual("url")
+   .get(function (){
+      return "/each-list/" + this._id
+   })
    function create(userInput){
-   const newList =  mongoose.model(userInput, listSchema);
+   const newCollection =  mongoose.model("test", listSchema);
+   const newList = new newCollection();
+   newList.listName = userInput;
+   newList.save()
+   return newList;
 
 } 
 
