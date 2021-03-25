@@ -4,7 +4,5 @@ const router = express.Router();
 const eachListController = require("../controllers/each-list")
 
 router.post("/", eachListController.createList)
-router.get("/:id", function(req,res){
-    res.render("../views/pages/each-list-page.ejs")
-})
+router.get("/:id", eachListController.renderList)
 module.exports = router;

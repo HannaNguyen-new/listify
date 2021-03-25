@@ -1,5 +1,6 @@
 // Require modules
 const express = require("express");
+const path = require("path");
 // Require routes
 const router = require("./routes/router");
 
@@ -13,7 +14,7 @@ mongoose.connect(url,{useNewUrlParser:true, useUnifiedTopology:true})
 
 const app = express();
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname,"/public")));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 

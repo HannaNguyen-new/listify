@@ -16,13 +16,18 @@
    .get(function (){
       return "/each-list/" + this._id
    })
-   function create(userInput){
+
    const newCollection =  mongoose.model("test", listSchema);
-   const newList = new newCollection();
-   newList.listName = userInput;
-   newList.save()
-   return newList;
+   function create(userInput){
+      const newList = new newCollection();
+      newList.listName = userInput;
+      newList.save()
+      return newList;
+  } 
 
-} 
+  function findList(id){
+  return  newCollection.findById({id})
 
-module.exports =  create;
+  }
+
+module.exports =  {create,findList};
