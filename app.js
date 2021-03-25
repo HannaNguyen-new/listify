@@ -1,6 +1,7 @@
 // Require modules
 const express = require("express");
 const path = require("path");
+
 // Require routes
 const router = require("./routes/router");
 

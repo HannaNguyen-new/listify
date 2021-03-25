@@ -1,5 +1,5 @@
 
-const {create, findList} = require("../models/list");
+const {create, findList, updateListName} = require("../models/list");
 
 
 // Create new list
@@ -9,7 +9,7 @@ exports.createList= function(req, res){
   res.redirect(list.url);
 }
 
-exports.renderList = function(req,res){
+exports.renderListName = function(req,res){
   const id = req.params.id;
   findList(id)
   .then(list => res.render("../views/pages/each-list-page",{list_name: list.listName}))
@@ -17,3 +17,10 @@ exports.renderList = function(req,res){
   
 }
 
+exports.updateListName = function(req,res){
+  const id = req.params.id;
+  const updatedName = req.body.listName;
+  updateListName(id,updatedName)
+  .then(list => res.render("../views/pages/each-list-page",{list_name: list.listName}))
+  .catch(err => console.log(err))
+}

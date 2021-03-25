@@ -1,4 +1,4 @@
-
+import axios from "axios";
 
 /* each-list-page*/
 function toggle (arr,attribute){
@@ -12,3 +12,10 @@ hide.addEventListener("click",()=>{
    toggle([bottomContainer,hide,show],"hidden")
 
 })
+
+const listNameInput = document.querySelector(".listNameInput");
+listNameInput.onchange = updateListName;
+function updateListName(input){
+   const url = "/each-list/:id";
+   axios.put(url,{listName:input})
+}

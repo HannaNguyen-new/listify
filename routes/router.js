@@ -4,5 +4,6 @@ const router = express.Router();
 const eachListController = require("../controllers/each-list")
 
 router.post("/", eachListController.createList)
-router.get("/:id", eachListController.renderList)
+router.get("/:id", eachListController.renderListName)
+router.put("/:id", eachListController.updateListName)
 module.exports = router;

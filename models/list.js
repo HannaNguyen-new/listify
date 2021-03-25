@@ -26,8 +26,10 @@
   } 
 
   function findList(id){
-  return  newCollection.findById({id})
-
+  return  newCollection.findById(id)
   }
 
-module.exports =  {create,findList};
+  function updateListName(id,updatedName){
+   return  newCollection.findByIdAndUpdate(id,{listName:updatedName},{new:true})
+  }
+module.exports =  {create,findList,updateListName};
