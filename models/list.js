@@ -17,21 +17,31 @@
       return "/each-list/" + this._id
    })
 
-   const newCollection =  mongoose.model("test", listSchema);
+   const ListCollection =  mongoose.model("test", listSchema);
   export function create(userInput){
-      const newList = new newCollection();
+      const newList = new ListCollection();
       newList.listName = userInput;
       newList.save()
       return newList;
   } 
 
  export function findList(id){
-  return  newCollection.findById(id)
+  return  ListCollection.findById(id)
   }
 
  export function findAndUpdateListName(id,updatedName){
-   return  newCollection.findByIdAndUpdate(id,{listName:updatedName},{new:true})
+   return  ListCollection.findByIdAndUpdate(id,{listName:updatedName},{new:true})
   }
-
+export function findAndAddItem(id,name,quantity){
+   findList(id)
+   .then(result => {
+      console.log(result);
+      result.itemArray.push({itemName: name, itemQuantity:quantity});
+      console.log(result.itemArray)
+      
+   })
+   .then(()=> console.log("sucessfully add new item"))
+   .catch(err => console.log(err))
+}
 
 

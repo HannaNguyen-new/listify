@@ -1,5 +1,5 @@
 
-import {create, findList, findAndUpdateListName} from "../models/list.js";
+import {create, findList, findAndUpdateListName,findAndAddItem} from "../models/list.js";
 
 
 // Create new list
@@ -12,7 +12,7 @@ export const createList= function(req, res){
 export const renderListName = function(req,res){
   const id = req.params.id;
   findList(id)
-  .then(list => res.render("../views/pages/each-list-page",{list_name: list.listName}))
+  .then(result => res.render("../views/pages/each-list-page",{list_name: result.listName}))
   .catch(err => console.log(err))
   
 }
@@ -26,8 +26,9 @@ export const updateListName = function(req,res){
 }
 
 export const addItem = function(req,res){
-  const itemName = req.body.itemName;
-  const itemQuantity = 1;
-  addItem(itemName,itemQuantity)
+  const id = req.params.id;
+  const item_name = req.body.itemName;
+  const item_quantity = 1;
+  findAndAddItem(id,item_name,item_quantity)
 }
 

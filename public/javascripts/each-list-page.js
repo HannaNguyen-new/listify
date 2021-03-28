@@ -1,5 +1,4 @@
-import axios from "axios";
-import { findAndUpdateListName } from "../../models/list";
+
 
 /* each-list-page*/
 function toggle (arr,attribute){
@@ -29,6 +28,6 @@ function updateListName(input){
 const itemInput = document.querySelector(".list-item-input");
 itemInput.oninput = () =>{addItem(itemInput.textContent)};
 function addItem(input){
-   const url = windows.location.href;
+   const url = window.location.href;
    axios.post(url,{itemName:input});
 }
