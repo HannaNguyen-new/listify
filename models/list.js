@@ -1,5 +1,5 @@
 
-   const mongoose = require("mongoose");
+   import mongoose from "mongoose";
    const itemSchema = new mongoose.Schema({
       itemName : {type: String, lowercase:true, required: true},
       itemQuantity : Number,
@@ -29,7 +29,7 @@
   return  newCollection.findById(id)
   }
 
-  function updateListName(id,updatedName){
+  function findAndUpdateListName(id,updatedName){
    return  newCollection.findByIdAndUpdate(id,{listName:updatedName},{new:true})
   }
-module.exports =  {create,findList,updateListName};
+export {create,findList,findAndUpdateListName};

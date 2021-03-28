@@ -1,12 +1,13 @@
 // Require modules
-const express = require("express");
-const path = require("path");
+import express from "express";
+import path from "path";
+import {fileURLToPath} from "url";
 
 // Require routes
-const router = require("./routes/router");
+import {router} from "./routes/router.js";
 
 // Connect with database
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 const url = "mongodb://localhost:27017/listifyDB";
 mongoose.connect(url,{useNewUrlParser:true, useUnifiedTopology:true})
 .then(success => console.log("Connected to database"))
@@ -14,7 +15,7 @@ mongoose.connect(url,{useNewUrlParser:true, useUnifiedTopology:true})
 
 
 const app = express();
-
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.use(express.static(path.join(__dirname,"/public")));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
@@ -32,5 +33,5 @@ app.get("/", function(req, res){
 
 
 app.listen(process.env.PORT || 3000,() => {
-    console.log("Server started on port 3000")
+    console.log("Server started on port")
 })

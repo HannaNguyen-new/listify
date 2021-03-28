@@ -1,9 +1,10 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 // Require controller modules
-const eachListController = require("../controllers/each-list")
+import * as eachListController from "../controllers/each-list.js"
 
 router.post("/", eachListController.createList)
 router.get("/:id", eachListController.renderListName)
 router.put("/:id", eachListController.updateListName)
-module.exports = router;
+
+export {router}

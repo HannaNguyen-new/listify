@@ -4,8 +4,9 @@
   "description": "simple shopping list",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "dev": "parcel views/pages/*.ejs",
+    "prod": "parcel build views/pages/*.ejs"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,7 @@
     "express": "^4.17.1",
     "mongoose": "^5.12.2",
     "nodemon": "^2.0.7"
-  }
+  },
+  "type": "module",
+  "_id": "listify@1.0.0"
 }

@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-    <script src= "/javascripts/first-page.js" async></script>
+
     <title>Listify</title>
 </head>
 <body>
@@ -23,13 +23,14 @@
        </div>
 
     </main>
-
+    <!--Create list transistion layer-->
     <form class="list-name-input-container" hidden method="POST" action="/each-list">
         <input class="list-name-input" type="text" placeholder="List name" autofocus name="listName">
         <div class="createList-btn" >Create list</div>
     </form>
     <div class="overlay" hidden>
     </div>
+    <script src= "/javascripts/first-page.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
-
 </html>

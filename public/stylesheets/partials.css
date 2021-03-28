@@ -23,7 +23,7 @@
     margin-bottom: 6em;
 }
 
-/*vreate-button*/
+/*create-button*/
 .create-btn{
     display: inline-block;
     width: 4em;
@@ -32,4 +32,54 @@
 }
 .create-btn:hover{
     cursor: pointer;
+}
+
+/*item*/
+.item{
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+    height: 20px;
+}
+input[type = "checkbox"]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    min-width: 22px;
+    min-height: 22px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    border: 1px solid #7868E6;
+}
+input[type = "checkbox"]:checked{
+    margin: 0 3px 0 4px;
+    min-width: 15px;
+    min-height: 22px;
+    border-radius: 3px;
+    transform: rotate(45deg);
+    border: none;
+    border-right: solid 5px #7868E6;
+    border-bottom: solid 5px #7868E6;
+    background: none;
+}
+.item-name{
+    width: 50%;
+    margin-left: 10px;
+}
+.quantity-price-container{
+    margin-left: auto;
+    margin-right: 30px;
+    width: 100px;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+   
+}
+.quantity-price-container > input{
+    width: 30%;
+    height: 100%;
+    border: solid 1px #EDEEF7;
+    border-radius: 5px;
+    
 }
