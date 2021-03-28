@@ -18,18 +18,20 @@
    })
 
    const newCollection =  mongoose.model("test", listSchema);
-   function create(userInput){
+  export function create(userInput){
       const newList = new newCollection();
       newList.listName = userInput;
       newList.save()
       return newList;
   } 
 
-  function findList(id){
+ export function findList(id){
   return  newCollection.findById(id)
   }
 
-  function findAndUpdateListName(id,updatedName){
+ export function findAndUpdateListName(id,updatedName){
    return  newCollection.findByIdAndUpdate(id,{listName:updatedName},{new:true})
   }
-export {create,findList,findAndUpdateListName};
+
+
+

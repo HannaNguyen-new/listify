@@ -6,5 +6,6 @@ import * as eachListController from "../controllers/each-list.js"
 router.post("/", eachListController.createList)
 router.get("/:id", eachListController.renderListName)
 router.put("/:id", eachListController.updateListName)
+router.post("/:id", eachListController.addItem)
 
 export {router}

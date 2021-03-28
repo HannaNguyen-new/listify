@@ -25,3 +25,9 @@ export const updateListName = function(req,res){
   .catch(err => console.log(err))
 }
 
+export const addItem = function(req,res){
+  const itemName = req.body.itemName;
+  const itemQuantity = 1;
+  addItem(itemName,itemQuantity)
+}
+
