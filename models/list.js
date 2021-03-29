@@ -33,12 +33,12 @@
    return  ListCollection.findByIdAndUpdate(id,{listName:updatedName},{new:true})
   }
 export function findAndAddItem(id,name,quantity){
-   findList(id)
+   return findList(id)
    .then(result => {
       result.itemArray.push({itemName: name, itemQuantity:quantity});
       result.save(); //subdocs are only saved when you execute save() on parent docs
+      return result.itemArray;
    })
-   .then(()=> console.log("sucessfully add new item"))
    .catch(err => console.log(err))
 }
 

@@ -29,6 +29,8 @@ export const addItem = function(req,res){
   const id = req.params.id;
   const item_name = req.body.itemName;
   const item_quantity = 1;
-  findAndAddItem(id,item_name,item_quantity)
+  findAndAddItem(id, item_name, item_quantity)
+  .then(arr => console.log(arr))
+  .catch(err => console.log(err))
 }
 

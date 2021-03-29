@@ -26,10 +26,16 @@ function updateListName(input){
 
 /*add item*/
 const itemInput = document.querySelector(".list-item-input");
-itemInput.onchange = () =>{addItem(itemInput.value)}; //onchange wrrks for input but not contenteditable
-function addItem(input){
+itemInput.addEventListener("keyup",(event) =>{
+   if(event.keyCode === 13){
+      addItem(itemInput.value); //onchange works for input but not contenteditable
+      itemInput.value = "";
+   };
+   }) 
+
+async function addItem(input){
    const url = window.location.href;
    if(input !== ""){
-      axios.post(url,{itemName:input});
+      await axios.post(url,{itemName:input});
    }
 }
