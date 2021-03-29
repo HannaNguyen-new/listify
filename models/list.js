@@ -35,10 +35,8 @@
 export function findAndAddItem(id,name,quantity){
    findList(id)
    .then(result => {
-      console.log(result);
       result.itemArray.push({itemName: name, itemQuantity:quantity});
-      console.log(result.itemArray)
-      
+      result.save(); //subdocs are only saved when you execute save() on parent docs
    })
    .then(()=> console.log("sucessfully add new item"))
    .catch(err => console.log(err))
