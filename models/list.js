@@ -18,14 +18,14 @@
    })
 
    const ListCollection =  mongoose.model("test", listSchema);
-  export function create(userInput){
+  export async function create(userInput){
       const newList = new ListCollection();
       newList.listName = userInput;
       newList.save()
       return newList;
   } 
 
- export function findList(id){
+ export async function findList(id){
   return  ListCollection.findById(id)
   }
 

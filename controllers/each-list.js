@@ -5,8 +5,9 @@ import {create, findList, findAndUpdateListName,findAndAddItem} from "../models/
 // Create new list
 export const createList= function(req, res){
    let listName = req.body.listName;
-   const list = create(listName);
-  res.redirect(list.url);
+   const list = create(listName)
+   .then(list => res.redirect(list.url))
+   .catch(err => console.log(err))
 }
 
 export const renderListName = function(req,res){
@@ -16,7 +17,13 @@ export const renderListName = function(req,res){
   .catch(err => console.log(err))
   
 }
-
+export const renderItem = function(req,res){
+  const id = req.params.id;
+  findList(id)
+  then(result => res.render("../views/pages/each-list-page",{itemArr: result.itemArray}))
+  //.then(result => console.log(result.itemArray))
+  .catch(err => console.log(err))
+}
 export const updateListName = function(req,res){
   const id = req.params.id;
   const updatedName = req.body.listName;

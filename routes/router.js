@@ -4,7 +4,7 @@ const router = express.Router();
 import * as eachListController from "../controllers/each-list.js"
 
 router.post("/", eachListController.createList)
-router.get("/:id", eachListController.renderListName)
+router.get("/:id", eachListController.renderListName,eachListController.renderItem)
 router.put("/:id", eachListController.updateListName)
 router.post("/:id", eachListController.addItem)
 

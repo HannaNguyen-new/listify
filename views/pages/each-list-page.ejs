@@ -20,7 +20,13 @@
         <div class="wrapper">
             <div class="top-container">
                 <div class="list-name">
-                    <p contenteditable class="list-name-input"> <%= list_name %> </p>
+                    <% if(list_name){ %>
+                        <p contenteditable class="list-name-input"> <%= list_name %> </p>
+                        
+                        <% } else{ %>
+                            <p contenteditable class="list-name-input">Add list name </p>
+
+                   <% } %>
                 </div>
                 <div class="input-container">
                     <input class="list-item-input" type="text" placeholder="Add item"></input>
@@ -31,11 +37,15 @@
                     <span class="mini">Quantity</span>
                     <span class="mini">Unit price</span>
                 </div>
+                
             <div class="items">
-                <% const itemArr = ["num1","num2","num1","num2","num1","num2","num1","num2","num1","num2"] %>
-                <% itemArr.forEach(returnedItem => { %>
-                    <%-include("../partials/item.ejs",{item: returnedItem}) %>
-                <%  } ) %>
+                <% if(itemArr) { %>
+                    <% itemArr.forEach(returnedItem => { %>
+                        <%-include("../partials/item.ejs",{item: returnedItem}) %>
+                    <%  } ) %>
+                <% } else{ %>
+                    <p>No items added.</p>
+                <%  } %>
             </div>
             </div>
             <div class="bottom-container">
