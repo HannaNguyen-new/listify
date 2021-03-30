@@ -32,8 +32,10 @@
                     <span class="mini">Unit price</span>
                 </div>
             <div class="items">
-                <%-include("../partials/item.ejs") %>
-                <%-include("../partials/item.ejs") %>
+                <% const itemArr = ["num1","num2","num1","num2","num1","num2","num1","num2","num1","num2"] %>
+                <% itemArr.forEach(returnedItem => { %>
+                    <%-include("../partials/item.ejs",{item: returnedItem}) %>
+                <%  } ) %>
             </div>
             </div>
             <div class="bottom-container">

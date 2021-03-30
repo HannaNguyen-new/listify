@@ -30,7 +30,7 @@ export const addItem = function(req,res){
   const item_name = req.body.itemName;
   const item_quantity = 1;
   findAndAddItem(id, item_name, item_quantity)
-  .then(arr => console.log(arr))
+  .then(arr => res.render("../views/pages/each-list-page",{itemArr: arr}))
   .catch(err => console.log(err))
 }
 
