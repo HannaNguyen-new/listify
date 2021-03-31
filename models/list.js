@@ -37,7 +37,7 @@ export function findAndAddItem(id,name,quantity){
    .then(result => {
       result.itemArray.push({itemName: name, itemQuantity:quantity});
       result.save(); //subdocs are only saved when you execute save() on parent docs
-      return result.itemArray;
+      return result;
    })
    .catch(err => console.log(err))
 }

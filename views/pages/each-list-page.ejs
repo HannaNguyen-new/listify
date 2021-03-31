@@ -24,7 +24,7 @@
                         <p contenteditable class="list-name-input"> <%= list_name %> </p>
                         
                         <% } else{ %>
-                            <p contenteditable class="list-name-input">Add list name </p>
+                            <p contenteditable class="list-name-input">Add list name</p>
 
                    <% } %>
                 </div>
@@ -41,7 +41,7 @@
             <div class="items">
                 <% if(itemArr) { %>
                     <% itemArr.forEach(returnedItem => { %>
-                        <%-include("../partials/item.ejs",{item: returnedItem}) %>
+                        <%-include("../partials/item.ejs",{item: returnedItem.itemName, quantity: returnedItem.itemQuantity}) %>
                     <%  } ) %>
                 <% } else{ %>
                     <p>No items added.</p>
