@@ -18,14 +18,14 @@
    })
 
    const ListCollection =  mongoose.model("test", listSchema);
-  export async function create(userInput){
+  export function create(userInput){
       const newList = new ListCollection();
       newList.listName = userInput;
       newList.save()
       return newList;
   } 
 
- export async function findList(id){
+ export  function findList(id){
   return  ListCollection.findById(id)
   }
 
@@ -37,7 +37,7 @@ export function findAndAddItem(id,name,quantity){
    .then(result => {
       result.itemArray.push({itemName: name, itemQuantity:quantity});
       result.save(); //subdocs are only saved when you execute save() on parent docs
-      return result;
+      return result.itemArray;
    })
    .catch(err => console.log(err))
 }
