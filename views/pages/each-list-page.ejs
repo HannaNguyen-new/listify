@@ -39,9 +39,11 @@
                 </div>
                 
             <div class="items">
-                <% if(itemArr arr) { %>
-                    <% itemArr .forEach(returnedItem => { %>
-                        <%-include("../partials/item.ejs",{item: returnedItem.itemName, quantity: returnedItem.itemQuantity}) %>
+                <% if(itemArr) { %>
+                    <% itemArr.forEach(returnedItem => { %>
+                        <%-include("../partials/item.ejs",{item: returnedItem.itemName, 
+                            quantity: returnedItem.itemQuantity,
+                        unitPrice: returnedItem.unitPrice}) %>
                     <%  } ) %>
                 <% } else{ %>
                     <p>No items added.</p>

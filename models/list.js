@@ -32,14 +32,24 @@
  export function findAndUpdateListName(id,updatedName){
    return  ListCollection.findByIdAndUpdate(id,{listName:updatedName},{new:true})
   }
+
 export function findAndAddItem(id,name,quantity){
    return findList(id)
    .then(result => {
-      result.itemArray.push({itemName: name, itemQuantity:quantity});
-      result.save(); //subdocs are only saved when you execute save() on parent docs
+      for(let item in result.itemArray){
+         if(item.itemName !== name){
+            result.itemArray.push({itemName: name, itemQuantity:quantity});
+            result.save(); //subdocs are only saved when you execute save() on parent docs
+         }
+      }
       return result.itemArray;
    })
    .catch(err => console.log(err))
+}
+
+export function findAndUpdate(id,arr){
+   findList(id)
+   
 }
 
 

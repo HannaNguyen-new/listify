@@ -47,4 +47,9 @@ export const addItem = async function(req,res){
   .then(result => res.json(result.url))
   .catch(err => console.log(err))
 }
+// update or create quantity, unit price, note, total price
+export const update = async function(req,res){
+  
+}
+
 
