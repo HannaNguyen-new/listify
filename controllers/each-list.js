@@ -44,8 +44,7 @@ export const addItem = async function(req,res){
   const item_name = req.body.itemName;
   const item_quantity = 1;
  await findAndAddItem(id, item_name, item_quantity)
-  .then(arr => res.render("../views/pages/each-list-page",{itemArr: arr}))
-  //.then(result => res.redirect(result.url ))
+  .then(result => res.json(result.url))
   .catch(err => console.log(err))
 }
 

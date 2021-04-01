@@ -36,6 +36,8 @@ itemInput.addEventListener("keyup",(event) =>{
  function addItem(input){
    const url = window.location.href;
    if(input !== ""){
-      axios.post(url,{itemName:input});
+     axios.post(url,{itemName:input})
+     .then(res => window.location.href = res.data )
+
    }
 }
