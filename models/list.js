@@ -33,16 +33,23 @@
    return  ListCollection.findByIdAndUpdate(id,{listName:updatedName},{new:true})
   }
 
-export function findAndAddItem(id,name,quantity){
-   return findList(id)
-   .then(result => {
-      for(let item in result.itemArray){
-         if(item.itemName !== name){
-            result.itemArray.push({itemName: name, itemQuantity:quantity});
-            result.save(); //subdocs are only saved when you execute save() on parent docs
-         }
+export async function findAndAddItem(id,name,quantity){
+   const list = await findList(id)
+   .then(list => {
+      if(list.itemArray.length < 1){
+         list.itemArray.push({itemName: name, itemQuantity:quantity});
+         list.save(); //subdocs are only saved when you execute save() on parent docs
+      }else{
+         for(let item in list.itemArray){
+            if(item.itemName !== name){
+                  list.itemArray.push({itemName: name, itemQuantity:quantity});
+                  list.save(); //subdocs are only saved when you execute save() on parent docs
+               }else{
+                  itemQuantity++;
+               }
       }
-      return result.itemArray;
+   }
+      return list;
    })
    .catch(err => console.log(err))
 }
