@@ -14,12 +14,15 @@ hide.addEventListener("click", () => {
 show.addEventListener("click", () => {
   toggle([bottomContainer, hide, show], "hidden");
 });
+
+
+
 /* update listname*/
 const listNameInput = document.querySelector(".list-name-input");
 listNameInput.oninput = () => {
    listNameInput.value = "";
-  updateListName(listNameInput.textContent);
-}; //oninput works for contenteditable
+  updateListName(listNameInput.textContent); //oninput works for contenteditable
+}; 
 function updateListName(input) {
   const url = window.location.href;
   axios.patch(url, { listName: input });
@@ -63,12 +66,13 @@ function update(elementToUpdate, value, id) {
 }
 
 /* update itemName */
-const itemName = document.querySelector(".item-name");
-itemName.addEventListener("keyup", () => {
-   const parentId = itemName.parentNode.getAttribute("id");
-   updateItemName(itemName.textContent, parentId)
-
+const itemName = document.querySelectorAll(".item-name");
+itemName.forEach(node => 
+   node.addEventListener("keyup", () => {
+   const parentId = node.parentNode.getAttribute("id");
+   updateItemName(node.textContent, parentId)
 })
+)
 function updateItemName(input, id){
    const url = window.location.href + "/items/" + id; 
    if(input !== ""){
