@@ -18,20 +18,20 @@
    })
 
    const ListCollection =  mongoose.model("test", listSchema);
-  export function create(userInput){
+  export async function create(userInput){
       const newList = new ListCollection();
       newList.listName = userInput;
       newList.save()
       return newList;
   } 
 
- export  function findList(id){
+ export async function findList(id){
   return  ListCollection.findById(id)
   }
 
  export function findAndUpdateListName(id,updatedName){
-   return  ListCollection.findByIdAndUpdate(id,{listName:updatedName},{new:true})
-  }
+    return  ListCollection.findByIdAndUpdate(id,{listName:updatedName},{new:true})
+}
 
 export async function findAndAddItem(id,name,quantity){
    const list = await findList(id)
@@ -40,23 +40,28 @@ export async function findAndAddItem(id,name,quantity){
          list.itemArray.push({itemName: name, itemQuantity:quantity});
          list.save(); //subdocs are only saved when you execute save() on parent docs
       }else{
-         for(let item in list.itemArray){
-            if(item.itemName !== name){
+         const foundItem = list.itemArray.find(item => item.itemName === name)
+              if(foundItem == undefined){
                   list.itemArray.push({itemName: name, itemQuantity:quantity});
                   list.save(); //subdocs are only saved when you execute save() on parent docs
                }else{
-                  itemQuantity++;
-               }
-      }
-   }
+                  foundItem.itemQuantity++;
+                  list.save(); //subdocs are only saved when you execute save() on parent docs
+               }  
+         } 
       return list;
    })
    .catch(err => console.log(err))
+   return list;
 }
 
-export function findAndUpdate(id,arr){
-   findList(id)
-   
+export async function updateItem(id,itemId, key, value){
+   const list = await findList(id)
+   const item = await list.itemArray.id(itemId);
+   console.log(key,value)
+   item[key] = value;
+   list.save();
+   return list;
 }
 
 

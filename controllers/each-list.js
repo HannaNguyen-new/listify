@@ -1,5 +1,5 @@
 
-import {create, findList, findAndUpdateListName,findAndAddItem} from "../models/list.js";
+import {create, findList, findAndUpdateListName,findAndAddItem, updateItem} from "../models/list.js";
 
 
 // Create new list
@@ -41,15 +41,21 @@ export const updateListName = async function(req,res){
 // add new item
 export const addItem = async function(req,res){
   const id = req.params.id;
-  const item_name = req.body.itemName;
+  const item_name = req.body.itemName.toLowerCase();
   const item_quantity = 1;
  await findAndAddItem(id, item_name, item_quantity)
   .then(result => res.json(result.url))
-  .catch(err => console.log(err))
+  .catch(err => console.log(err)) 
 }
-// update or create quantity, unit price, note, total price
+// update item properties
 export const update = async function(req,res){
-  
+  const id = req.params.id;
+  const itemId = req.params.itemid;
+  const key = Object.keys(req.body)[0];
+  const value = req.body[key];
+ await updateItem(id, itemId, key, value)
+  .then(result => result)
+  .catch(err => console.log(err))  
 }
 
 

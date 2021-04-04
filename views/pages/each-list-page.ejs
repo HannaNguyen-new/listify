@@ -43,7 +43,8 @@
                     <% itemArr.forEach(returnedItem => { %>
                         <%-include("../partials/item.ejs",{item: returnedItem.itemName, 
                             quantity: returnedItem.itemQuantity,
-                        unitPrice: returnedItem.unitPrice}) %>
+                            unitPrice: returnedItem.unitPrice,
+                            id: returnedItem._id}) %>
                     <%  } ) %>
                 <% } else{ %>
                     <p>No items added.</p>
