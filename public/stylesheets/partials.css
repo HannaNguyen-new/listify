@@ -38,8 +38,10 @@
 .item{
     display: flex;
     align-items: center;
-    padding: 10px 10px;
+    padding: 10px;
+    margin-bottom: 20px;
     height: 20px;
+    flex-wrap: wrap;
 }
 input[type = "checkbox"]{
     -webkit-appearance: none;
@@ -82,4 +84,12 @@ input[type = "checkbox"]:checked{
     border: solid 1px #EDEEF7;
     border-radius: 5px;
     
+}
+.noteTotalprice{
+    flex-basis: 100%;
+    padding: 5px 0;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
