@@ -1,5 +1,3 @@
-
-
 /* each-list-page*/
 function toggle(arr, attribute) {
   arr.forEach((el) => el.toggleAttribute(attribute));
@@ -15,35 +13,40 @@ show.addEventListener("click", () => {
   toggle([bottomContainer, hide, show], "hidden");
 });
 
-
+/* function debounce */
+function debounce(callback, delay) {
+  let timeout = null;
+  clearTimeout(timeout);
+  timeout = setTimeout(callback, delay);
+}
+/* function update */
+function update(str, url, obj) {
+  if (str !== "") {
+    axios.patch(url, obj);
+  }
+}
 
 /* update listname*/
 const listNameInput = document.querySelector(".list-name-input");
-listNameInput.oninput = () => {
-   listNameInput.value = "";
-  updateListName(listNameInput.textContent); //oninput works for contenteditable
-}; 
-function updateListName(input) {
+listNameInput.addEventListener("keyup", () => {
   const url = window.location.href;
-  axios.patch(url, { listName: input });
-}
+  const obj = { listName: listNameInput.textContent };
+  debounce(() => {
+    update(listNameInput.textContent, url, obj);
+  }, 2000);
+});
 
 /*add item*/
 const itemInput = document.querySelector(".list-item-input");
 itemInput.addEventListener("keyup", (event) => {
   if (event.keyCode === 13) {
-    addItem(itemInput.value); //onchange works for input but not contenteditable
+    const url = window.location.href;
+    const obj = { itemName: itemInput.value };
+    if (itemInput.value !== "") {
+      axios.post(url, obj).then((res) => (window.location.href = res.data));
+    }
   }
 });
-
-function addItem(input) {
-  const url = window.location.href;
-  if (input !== "") {
-    axios
-      .post(url, {itemName: input})
-      .then((res) => (window.location.href = res.data));
-  }
-}
 
 /* update item*/
 const itemQuantity = document.querySelectorAll(".item-quantity");
@@ -51,31 +54,27 @@ const unitPrice = document.querySelectorAll(".unit-price");
 const arr = [...itemQuantity, ...unitPrice];
 arr.forEach((node) =>
   node.addEventListener("keyup", () => {
-     let nodeName = node.getAttribute("class");
-     nodeName = nodeName === "item-quantity" ? "itemQuantity": "unitPrice"
-     const parent = node.parentNode.parentNode;
-     const parentId = parent.getAttribute("id");
-     update(nodeName,node.value,parentId)
-     
+    let nodeName = node.getAttribute("class");
+    nodeName = nodeName === "item-quantity" ? "itemQuantity" : "unitPrice";
+    const parent = node.parentNode.parentNode;
+    const parentId = parent.getAttribute("id");
+    const url = window.location.href + "/items/" + parentId;
+    const obj = { [nodeName]: Number(node.value) };
+    debounce(() => {
+      update(node.value, url, obj);
+    }, 1000);
   })
 );
-function update(elementToUpdate, value, id) {
-  const obj = {[elementToUpdate] : Number(value)} // create obj with dynamic key-value
-  const url = window.location.href + "/items/" + id;
-  axios.patch(url, obj);
-}
 
 /* update itemName */
 const itemName = document.querySelectorAll(".item-name");
-itemName.forEach(node => 
-   node.addEventListener("keyup", () => {
-   const parentId = node.parentNode.getAttribute("id");
-   updateItemName(node.textContent, parentId)
-})
-)
-function updateItemName(input, id){
-   const url = window.location.href + "/items/" + id; 
-   if(input !== ""){
-      axios.patch(url, {itemName : input})
-   }
-}
+itemName.forEach((node) =>
+  node.addEventListener("keyup", () => {
+    const parentId = node.parentNode.getAttribute("id");
+    const url = window.location.href + "/items/" + parentId;
+    const obj = { itemName: node.textContent };
+      debounce(() => {
+        update(node.textContent,url, obj);
+      }, 2000);
+  })
+);

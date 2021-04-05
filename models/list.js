@@ -55,13 +55,14 @@ export async function findAndAddItem(id,name,quantity){
    return list;
 }
 
+
 export async function updateItem(id,itemId, key, value){
    const list = await findList(id)
    const item = await list.itemArray.id(itemId);
    item[key] = value;
-   console.log(value)
    list.save();
    return list;
 }
+
 
 

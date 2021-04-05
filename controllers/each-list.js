@@ -1,5 +1,5 @@
 
-import {create, findList, findAndUpdateListName,findAndAddItem, updateItem} from "../models/list.js";
+import {create, findList, findAndUpdateListName,findAndAddItem,updateItem} from "../models/list.js";
 
 
 // Create new list
@@ -48,6 +48,7 @@ export const addItem = async function(req,res){
   .catch(err => console.log(err)) 
 }
 // update item properties
+
 export const update = async function(req,res){
   const id = req.params.id;
   const itemId = req.params.itemid;
@@ -57,5 +58,6 @@ export const update = async function(req,res){
   .then(result => result)
   .catch(err => console.log(err))  
 }
+
 
 
