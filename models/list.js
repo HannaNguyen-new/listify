@@ -4,8 +4,11 @@
       itemName : {type: String, lowercase:true, required: true},
       itemQuantity : Number,
       unitPrice : Number,
-      totalPrice : Number,
-      memo : String
+      totalPrice : {
+         type : Number,
+         get : () => {return this.itemQuantity * this.unitPrice}
+      },
+      note : String
    })
    const listSchema = new mongoose.Schema({
       listName : {type: String, required: true},
@@ -59,7 +62,12 @@ export async function findAndAddItem(id,name,quantity){
 export async function updateItem(id,itemId, key, value){
    const list = await findList(id)
    const item = await list.itemArray.id(itemId);
-   item[key] = value;
+   console.log(item)
+   if(key !== "note"){
+      item[key] = Number(value);
+   }else{
+      item[key] = value;
+   }
    list.save();
    return list;
 }

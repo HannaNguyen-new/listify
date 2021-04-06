@@ -54,7 +54,7 @@ export const update = async function(req,res){
   const itemId = req.params.itemid;
   const key = Object.keys(req.body)[0];
   const value = req.body[key];
- await updateItem(id, itemId, key, value)
+  await updateItem(id, itemId, key, value)
   .then(result => result)
   .catch(err => console.log(err))  
 }

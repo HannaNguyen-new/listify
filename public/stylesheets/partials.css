@@ -42,7 +42,6 @@
     display: flex;
     align-items: center;
     padding: 10px;
-    margin-bottom: 20px;
     flex-wrap: wrap;
     border-bottom: solid 1px #C4C4C4;
 }

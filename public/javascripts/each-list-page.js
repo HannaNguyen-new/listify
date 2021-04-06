@@ -19,7 +19,8 @@ show.addEventListener("click", () => {
 const item = document.querySelectorAll(".item");
 const noteAndPrice = document.querySelectorAll(".noteTotalprice");
 item.forEach(el => el.addEventListener("click",(event) => {
-   if(event.target.className !== "noteInput"){
+  console.log(event.target.className)
+   if(event.target.className === "item"){
      el.childNodes[7].toggleAttribute("noDisplay");
    }
   
@@ -64,18 +65,21 @@ itemInput.addEventListener("keyup", (event) => {
 /* update item*/
 const itemQuantity = document.querySelectorAll(".item-quantity");
 const unitPrice = document.querySelectorAll(".unit-price");
-const arr = [...itemQuantity, ...unitPrice];
+const noteInput = document.querySelectorAll(".noteInput");
+const arr = [...itemQuantity, ...unitPrice,...noteInput];
 arr.forEach((node) =>
   node.addEventListener("keyup", () => {
     let nodeName = node.getAttribute("class");
-    nodeName = nodeName === "item-quantity" ? "itemQuantity" : "unitPrice";
-    const parent = node.parentNode.parentNode;
+    nodeName = nodeName === "item-quantity" ? "itemQuantity" 
+                : nodeName === "unit-price" ? "unitPrice"
+                : "note"
+    const parent = node.closest(".item");
     const parentId = parent.getAttribute("id");
     const url = window.location.href + "/items/" + parentId;
-    const obj = { [nodeName]: Number(node.value) };
+    const obj = { [nodeName]: node.value };
     debounce(() => {
       update(node.value, url, obj);
-    }, 1000);
+    }, 2000);
   })
 );
 
