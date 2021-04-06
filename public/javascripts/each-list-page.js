@@ -1,4 +1,6 @@
+/*--------- Animation-----------*/
 /* each-list-page*/
+// show, hide button
 function toggle(arr, attribute) {
   arr.forEach((el) => el.toggleAttribute(attribute));
 }
@@ -13,6 +15,17 @@ show.addEventListener("click", () => {
   toggle([bottomContainer, hide, show], "hidden");
 });
 
+// slide up and down
+const item = document.querySelectorAll(".item");
+const noteAndPrice = document.querySelectorAll(".noteTotalprice");
+item.forEach(el => el.addEventListener("click",(event) => {
+   if(event.target.className !== "noteInput"){
+     el.childNodes[7].toggleAttribute("noDisplay");
+   }
+  
+}))
+
+/*--------- Dealing with database----------*/
 /* function debounce */
 function debounce(callback, delay) {
   let timeout = null;

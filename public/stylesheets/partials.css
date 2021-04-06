@@ -35,13 +35,16 @@
 }
 
 /*item*/
+[noDisplay]{
+    display: none !important;
+}
 .item{
     display: flex;
     align-items: center;
     padding: 10px;
     margin-bottom: 20px;
-    height: 20px;
     flex-wrap: wrap;
+    border-bottom: solid 1px #C4C4C4;
 }
 input[type = "checkbox"]{
     -webkit-appearance: none;
@@ -66,7 +69,7 @@ input[type = "checkbox"]:checked{
     background: none;
 }
 .item-name{
-    width: 50%;
+    width: 30%;
     margin-left: 10px;
 }
 .quantity-price-container{
@@ -78,7 +81,7 @@ input[type = "checkbox"]:checked{
     justify-content: space-around;
    
 }
-.quantity-price-container > input{
+.quantity-price-container  input{
     width: 30%;
     height: 100%;
     border: solid 1px #EDEEF7;
@@ -87,9 +90,30 @@ input[type = "checkbox"]:checked{
 }
 .noteTotalprice{
     flex-basis: 100%;
-    padding: 5px 0;
     margin-top: 5px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #A59C9C;
+}
+
+.noteInput{
+    width: 50%;
+    height: 100%;
+    margin-left: 10px;
+    border: solid 1px #EDEEF7;
+    border-radius: 5px;
+    min-height: 4em;
+}
+.note,
+.totalPrice{
+    width: 10em;
+    display: flex;
+    align-items: center;
+}
+
+.priceLabel{
+    width: 3em;
+    margin: 0 1em;
 }
