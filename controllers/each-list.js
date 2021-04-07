@@ -24,7 +24,7 @@ export const renderItem = async function(req,res){
   .then(result =>  result.itemArray)
   .catch(err => console.log(err))
 }
-// render both list name nad items
+// render both list name and items
 export const renderAll = function(req,res){
   Promise.all( [renderListName(req,res),renderItem(req,res)])
    .then(results => res.render("../views/pages/each-list-page",{list_name: results[0],itemArr: results[1]}))
@@ -55,7 +55,7 @@ export const update = async function(req,res){
   const key = Object.keys(req.body)[0];
   const value = req.body[key];
   await updateItem(id, itemId, key, value)
-  .then(result => result)
+  .then(result => res.json(result.url))
   .catch(err => console.log(err))  
 }
 

@@ -44,7 +44,8 @@
                         <%-include("../partials/item.ejs",{item: returnedItem.itemName, 
                             quantity: returnedItem.itemQuantity,
                             unitPrice: returnedItem.unitPrice,
-                            id: returnedItem._id}) %>
+                            id: returnedItem._id,
+                            totalPrice: returnedItem.totalPrice}) %>
                     <%  } ) %>
                 <% } else{ %>
                     <p>No items added.</p>

@@ -6,7 +6,7 @@
       unitPrice : Number,
       totalPrice : {
          type : Number,
-         get : () => {return this.itemQuantity * this.unitPrice}
+         get : function() {return this.itemQuantity * this.unitPrice}
       },
       note : String
    })
