@@ -34,9 +34,9 @@ function debounce(callback, delay) {
   timeout = setTimeout(callback, delay);
 }
 /* function update */
-function update(str, url, obj) {
+ function update(str, url, obj) {
   if (str !== "") {
-    axios.patch(url, obj);
+  return axios.patch(url, obj);
   }
 }
 
@@ -44,7 +44,7 @@ function update(str, url, obj) {
 const listNameInput = document.querySelector(".list-name-input");
 listNameInput.addEventListener("keyup", () => {
   const url = window.location.href;
-  const obj = { listName: listNameInput.textContent };
+  const obj = {listName: listNameInput.textContent};
   debounce(() => {
     update(listNameInput.textContent, url, obj);
   }, 2000);
@@ -59,6 +59,7 @@ itemInput.addEventListener("keyup", (event) => {
     if (itemInput.value !== "") {
       axios.post(url, obj).then((res) => (window.location.href = res.data));
     }
+    
   }
 });
 
@@ -80,9 +81,15 @@ arr.forEach((node) =>
     const parentId = parent.getAttribute("id");
     const url = window.location.href + "/items/" + parentId;
     const obj = { [nodeName]: node.value };
-    debounce(() => {
-      update(node.value, url, obj);
-    }, 2000);
+    const updatedTotalPrice = parent.lastElementChild.lastElementChild.lastElementChild;
+    console.log(updatedTotalPrice)
+    debounce(async () => {
+         await update(node.value, url, obj)
+          .then(res => updatedTotalPrice.innerHTML = res.data[0].itemQuantity * res.data[0].unitPrice)
+          .catch(err => console.log(err));
+         
+      }, 300);
+
   })
 );
 
@@ -92,7 +99,7 @@ itemName.forEach((node) =>
   node.addEventListener("keyup", () => {
     const parentId = node.parentNode.getAttribute("id");
     const url = window.location.href + "/items/" + parentId;
-    const obj = { itemName: node.textContent };
+    const obj = {itemName: node.textContent};
     debounce(() => {
       update(node.textContent, url, obj);
     }, 2000);
