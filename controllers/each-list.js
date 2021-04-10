@@ -9,25 +9,12 @@ export const createList = async function(req, res){
    .then(list => res.redirect(list.url))
    .catch(err => console.log(err))
 }
-// render list name
-export const renderListName = async function(req,res){
-  const id = req.params.id;
- return await findList(id)
-  .then(result =>  result.listName)
-  .catch(err => console.log(err))
-  
-}
-// render items
-export const renderItem = async function(req,res){
-  const id = req.params.id;
- return await findList(id)
-  .then(result =>  result.itemArray)
-  .catch(err => console.log(err))
-}
+
 // render both list name and items
-export const renderAll = function(req,res){
-  Promise.all( [renderListName(req,res),renderItem(req,res)])
-   .then(results => res.render("../views/pages/each-list-page",{list_name: results[0], itemArr: results[1]}))
+export const renderAll = async function(req,res){
+  const id = req.params.id;
+  await findList(id)
+   .then(result => res.render("../views/pages/each-list-page",{list_name: result.listName, itemArr: result.itemArray, sum : result.sumToBuy}))
    .catch(err => console.log(err))
 }
 // update list name

@@ -8,6 +8,7 @@ body{
     background-color: #F3F3F4 ;
     font-size: 16px;
     font-family: 'Varela Round', sans-serif;
+    color: #696868;
 }
 header{
     background-color: #7868E6;
@@ -52,7 +53,6 @@ header{
     width: 90%;
     height: 30%;
     border: none;
-    border-bottom: solid 1px #7868E6;
     outline: none;
     color: #7868E6;
     font-size: 18px;
@@ -80,34 +80,38 @@ header{
     margin: 0.5em auto;
 }
 .top-container{
-    margin: 0.5em auto ;
+    margin: 0.1em auto ;
     width: 100%;
 }
 .list-name{
     color: #A59C9C;
-    margin: 0.5em 0.6em;
+    margin: 0.5em 0.6em 0.5em 0;
 }
 .input-container{
     box-sizing: border-box;
     width: 100%;
-    height: 3em;
+    height: 3.5em;
     background-color: #ffffff;
+    margin-bottom: 1em;
+    box-shadow: 0 1px 5px #C4C4C4;
 }
 .list-item-input{
-    margin: 0 0.8em;
+    margin: 0.6em 0.8em 0;
     box-sizing: border-box;
     width: 90%;
-    height: 100%;
+    height: 50%;
     border: none;
     outline: none;
     color: #7868E6;
+    border-bottom: solid 1px #7868E6;
+    
     
 }
 ::placeholder{
     color: #7868E6;
     opacity: 0.5;
     font-size: 18px;
-    padding: 1em;
+    padding-left: 5px;
 }
 /*item-container div*/
 .items{
@@ -117,18 +121,22 @@ header{
 .label{
     font-size: 12px;
     text-align: right;
-    padding-right: 50px;
+    padding-right: 70px;
     margin-bottom: 5px;
 }
 .mini{
     display: inline-block;
     width: 30px;
-    margin-left: 30px;
+    margin-right: 8px;
+}
+
+.price{
+    margin-left: 16px;
 }
 
 
 /*bottom div*/
-.wrapper{
+.bottom-wrapper{
     padding-top: 1em;
     margin-top: 2em;
 }
@@ -137,6 +145,7 @@ header{
     height: 6em;
     border-radius: 10px;
     background-color: #ffffff;
+    box-shadow: 0 1px 5px #C4C4C4;
 }
 .bottom-text{
     width: 90%;
@@ -154,7 +163,7 @@ header{
     padding: 0.4em 1em;
     background-color: #7868E6;
     border-radius: 10px;
-    box-shadow:  0 2px 5px rgba(0,0,0,0.5);
+    box-shadow: 0 1px 5px #727272;
 }
 .btn:hover{
     cursor: pointer;

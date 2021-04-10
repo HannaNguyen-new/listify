@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/stylesheets/partials.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <title>Listify</title>
 </head>
     <div class="item" id=<%=id%>>
@@ -15,6 +16,7 @@
         <div class="quantity-price-container">
             <input type="text" class="item-quantity" value= <%=quantity%> ></input>
             <input type="text" class="unit-price" value= <%=unitPrice%> ></input>
+            <i class="fas fa-trash"></i>
         </div>
         <div class="noteTotalprice" noDisplay>
             <div class="note">

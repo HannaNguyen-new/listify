@@ -20,6 +20,12 @@
       return "/each-list/" + this._id
    })
 
+   listSchema
+   .virtual("sumToBuy")
+   .get(function(){
+      return this.itemArray.reduce((acc,curr) => acc + curr.totalPrice, 0)
+   })
+
    const ListCollection =  mongoose.model("test", listSchema);
   export async function create(userInput){
       const newList = new ListCollection();

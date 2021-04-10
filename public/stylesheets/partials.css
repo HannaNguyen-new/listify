@@ -71,20 +71,24 @@ input[type = "checkbox"]:checked{
     width: 30%;
     margin-left: 10px;
 }
+
 .quantity-price-container{
     margin-left: auto;
     margin-right: 30px;
-    width: 100px;
+    width: 120px;
     height: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+
    
 }
 .quantity-price-container  input{
-    width: 30%;
+    width: 25%;
     height: 100%;
     border: solid 1px #EDEEF7;
     border-radius: 5px;
+    text-align: center;
+    color: #696868;
     
 }
 .noteTotalprice{
@@ -104,6 +108,7 @@ input[type = "checkbox"]:checked{
     border: solid 1px #EDEEF7;
     border-radius: 5px;
     min-height: 4em;
+    color: #A59C9C;
 }
 .note,
 .totalPrice{
@@ -115,4 +120,9 @@ input[type = "checkbox"]:checked{
 .priceLabel{
     width: 3em;
     margin: 0 1em;
+}
+
+.fa-trash{
+    color: #A59C9C;
+   
 }
