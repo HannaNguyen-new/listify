@@ -27,7 +27,7 @@ export const renderItem = async function(req,res){
 // render both list name and items
 export const renderAll = function(req,res){
   Promise.all( [renderListName(req,res),renderItem(req,res)])
-   .then(results => res.render("../views/pages/each-list-page",{list_name: results[0],itemArr: results[1]}))
+   .then(results => res.render("../views/pages/each-list-page",{list_name: results[0], itemArr: results[1]}))
    .catch(err => console.log(err))
 }
 // update list name

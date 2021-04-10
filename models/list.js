@@ -1,7 +1,7 @@
 
    import mongoose from "mongoose";
    const itemSchema = new mongoose.Schema({
-      itemName : {type: String, lowercase:true, required: true},
+      itemName : {type: String, lowercase:true},
       itemQuantity : {type:Number, min:0},
       unitPrice : {type:Number, min:0},
       totalPrice : {
@@ -66,9 +66,10 @@ export async function updateItem(id,itemId, key, value){
       item[key] = Number(value);
    }else{
       item[key] = value;
+      console.log(value)
    }
    list.save();
-   return list.itemArray;
+   return item;
 }
 
 

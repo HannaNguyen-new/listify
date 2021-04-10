@@ -28,27 +28,29 @@ item.forEach((el) =>
 
 /*--------- Dealing with database----------*/
 /* function debounce */
-function debounce(callback, delay) {
-  let timeout = null;
-  clearTimeout(timeout);
-  timeout = setTimeout(callback, delay);
+function debounce(fn, delay) {
+  let timeout;
+  return () => {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(fn, delay);
+  };
 }
 /* function update */
- function update(str, url, obj) {
-  if (str !== "") {
-  return axios.patch(url, obj);
-  }
+function update(str, url, obj) {
+    return axios.patch(url, obj);
 }
 
 /* update listname*/
 const listNameInput = document.querySelector(".list-name-input");
-listNameInput.addEventListener("keyup", () => {
+listNameInput.addEventListener("keyup", debounce(() => {
   const url = window.location.href;
-  const obj = {listName: listNameInput.textContent};
-  debounce(() => {
-    update(listNameInput.textContent, url, obj);
-  }, 2000);
-});
+  const obj = { listName: listNameInput.textContent };
+  update(listNameInput.textContent, url, obj);
+
+},1000) 
+);
 
 /*add item*/
 const itemInput = document.querySelector(".list-item-input");
@@ -59,7 +61,6 @@ itemInput.addEventListener("keyup", (event) => {
     if (itemInput.value !== "") {
       axios.post(url, obj).then((res) => (window.location.href = res.data));
     }
-    
   }
 });
 
@@ -68,8 +69,8 @@ const itemQuantity = document.querySelectorAll(".item-quantity");
 const unitPrice = document.querySelectorAll(".unit-price");
 const noteInput = document.querySelectorAll(".noteInput");
 const arr = [...itemQuantity, ...unitPrice, ...noteInput];
-arr.forEach((node) =>
-  node.addEventListener("keyup", () => {
+arr.forEach(node =>
+  node.addEventListener("keyup", debounce(() =>{
     let nodeName = node.getAttribute("class");
     nodeName =
       nodeName === "item-quantity"
@@ -81,27 +82,31 @@ arr.forEach((node) =>
     const parentId = parent.getAttribute("id");
     const url = window.location.href + "/items/" + parentId;
     const obj = { [nodeName]: node.value };
-    const updatedTotalPrice = parent.lastElementChild.lastElementChild.lastElementChild;
-    console.log(updatedTotalPrice)
-    debounce(async () => {
-         await update(node.value, url, obj)
-          .then(res => updatedTotalPrice.innerHTML = res.data[0].itemQuantity * res.data[0].unitPrice)
-          .catch(err => console.log(err));
-         
-      }, 300);
+    const updatedTotalPrice =
+      parent.lastElementChild.lastElementChild.lastElementChild;
 
-  })
-);
+      (async function (){
+        await update(node.value, url, obj)
+          .then(res => {
+            console.log(res.data)
+             updatedTotalPrice.innerHTML = res.data.itemQuantity * res.data.unitPrice
+          })
+          .catch(err => console.log(err));
+      })()
+  },500)
+  ))
+
 
 /* update itemName */
 const itemName = document.querySelectorAll(".item-name");
-itemName.forEach((node) =>
-  node.addEventListener("keyup", () => {
-    const parentId = node.parentNode.getAttribute("id");
-    const url = window.location.href + "/items/" + parentId;
-    const obj = {itemName: node.textContent};
+itemName.forEach((node) => {
+  node.addEventListener(
+    "keyup",
     debounce(() => {
-      update(node.textContent, url, obj);
-    }, 2000);
-  })
-);
+      const parentId = node.parentNode.getAttribute("id");
+      const url = window.location.href + "/items/" + parentId;
+      const obj = { itemName: node.textContent };
+      update(node.value, url, obj);
+    }, 2000)
+  );
+});
