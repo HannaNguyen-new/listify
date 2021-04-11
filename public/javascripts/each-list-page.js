@@ -1,5 +1,7 @@
 /*--------- Animation-----------*/
 /* each-list-page*/
+
+
 // show, hide button
 function toggle(arr, attribute) {
   arr.forEach((el) => el.toggleAttribute(attribute));
@@ -25,6 +27,35 @@ item.forEach((el) =>
     }
   })
 );
+
+// move checked item
+const items = document.querySelector(".items");
+const checkbox = document.querySelectorAll(".checkbox");
+checkbox.forEach(node => node.addEventListener("click", event =>{
+      const node = event.target;
+      const id = node.parentElement.getAttribute("id");
+      const checkedItem = document.getElementById(id);
+      const index = Array.from(items.children).findIndex(el => el.getAttribute("id") === id);
+      toggle([checkedItem],"checked");
+        if(checkedItem.hasAttribute("checked")){
+          check(checkedItem,items,index);
+        }else{
+          uncheck(checkedItem,items)
+        }
+     
+     
+ }
+));
+
+function check(node,parent,index) {
+  node.remove();
+  parent.appendChild(node);
+  node.setAttribute("oldIndex",index)
+}
+function uncheck(node,parent){
+  const i = node.getAttribute("oldIndex")
+  parent.insertBefore(node,parent.children[i])
+}
 
 /*--------- Dealing with database----------*/
 /* function debounce */
@@ -110,3 +141,13 @@ itemName.forEach((node) => {
     }, 2000)
   );
 });
+
+/* delete item*/
+const deleteIcon = document.querySelectorAll(".fa-trash");
+deleteIcon.forEach(node => node.addEventListener("click", ()=> {
+  const parent = node.closest(".item");
+  const parentId = parent.getAttribute("id");
+  const url = window.location.href + "/items/" + parentId;
+  axios.delete(url)
+  .then(res => window.location.href = res.data)
+}))

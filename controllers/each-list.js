@@ -1,5 +1,5 @@
 
-import {create, findList, findAndUpdateListName,findAndAddItem,updateItem} from "../models/list.js";
+import {create, findList, findAndUpdateListName,findAndAddItem,updateItem,deleteItem} from "../models/list.js";
 
 
 // Create new list
@@ -30,7 +30,8 @@ export const addItem = async function(req,res){
   const id = req.params.id;
   const item_name = req.body.itemName.toLowerCase();
   const item_quantity = 1;
- await findAndAddItem(id, item_name, item_quantity)
+  const unit_price = 0;
+ await findAndAddItem(id, item_name, item_quantity,unit_price)
   .then(result => res.json(result.url))
   .catch(err => console.log(err)) 
 }
@@ -46,5 +47,13 @@ export const update = async function(req,res){
   .catch(err => console.log(err))  
 }
 
+// delete item
+export const  del = async function(req,res){
+  const id = req.params.id;
+  const itemId = req.params.itemid;
+  await deleteItem(id,itemId)
+  .then(result => res.json(result.url))
+  .catch(err => console.log(err))
+}
 
 

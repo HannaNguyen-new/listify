@@ -124,5 +124,6 @@ input[type = "checkbox"]:checked{
 
 .fa-trash{
     color: #A59C9C;
-   
+    transform: translateX(10px);
+    
 }

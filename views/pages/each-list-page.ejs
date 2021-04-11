@@ -5,10 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/partials.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+   
     <title>Listify</title>
 </head>
 <body>
@@ -24,12 +26,12 @@
                         <p contenteditable class="list-name-input"> <%= list_name %> </p>
                         
                         <% } else{ %>
-                            <p contenteditable class="list-name-input">Add list name</p>
+                            <p contenteditable class="list-name-input" data-placeholder = "Add list name"></p>
 
                    <% } %>
                 </div>
                 <div class="input-container">
-                    <input class="list-item-input" type="text" placeholder="Add item"></input>
+                    <input class="list-item-input" type="text" placeholder="Add item" autofocus></input>
                 </div>
             </div>
             <div class="item-container">
@@ -39,7 +41,7 @@
                 </div>
                 
             <div class="items">
-                <% if(itemArr) { %>
+                <% if(itemArr !== []) { %>
                     <% itemArr.forEach(returnedItem => { %>
                         <%-include("../partials/item.ejs",{item: returnedItem.itemName, 
                             quantity: returnedItem.itemQuantity,
@@ -48,7 +50,7 @@
                             totalPrice: returnedItem.totalPrice,
                             note: returnedItem.note}) %>
                     <%  } ) %>
-                <% } else{ %>
+                <% } else { %>
                     <p>No items added.</p>
                 <%  } %>
             </div>

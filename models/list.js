@@ -8,10 +8,11 @@
          type : Number,
          get : function() {return this.itemQuantity * this.unitPrice}
       },
-      note : String
+      note : String,
+      checked : {type: Boolean, default: false}
    })
    const listSchema = new mongoose.Schema({
-      listName : {type: String, required: true},
+      listName :  String,
       itemArray : [itemSchema]
    })
    listSchema
@@ -30,7 +31,7 @@
   export async function create(userInput){
       const newList = new ListCollection();
       newList.listName = userInput;
-      newList.save()
+     await newList.save()
       return newList;
   } 
 
@@ -42,16 +43,16 @@
     return  ListCollection.findByIdAndUpdate(id,{listName:updatedName},{new:true})
 }
 
-export async function findAndAddItem(id,name,quantity){
+export async function findAndAddItem(id,name,quantity, price){
    const list = await findList(id)
    .then(list => {
       if(list.itemArray.length < 1){
-         list.itemArray.push({itemName: name, itemQuantity:quantity});
+         list.itemArray.push({itemName: name, itemQuantity:quantity, unitPrice: price});
          list.save(); //subdocs are only saved when you execute save() on parent docs
       }else{
          const foundItem = list.itemArray.find(item => item.itemName === name)
               if(foundItem == undefined){
-                  list.itemArray.push({itemName: name, itemQuantity:quantity});
+                  list.itemArray.push({itemName: name, itemQuantity:quantity, unitPrice: price});
                   list.save(); //subdocs are only saved when you execute save() on parent docs
                }else{
                   foundItem.itemQuantity++;
@@ -74,9 +75,16 @@ export async function updateItem(id,itemId, key, value){
       item[key] = value;
       console.log(value)
    }
-   list.save();
+   await list.save();
    return item;
 }
 
+export async function deleteItem(id,itemId){
+   const list = await findList(id);
+   await list.itemArray.id(itemId).remove();
+   await list.save();
+   return list
+
+}
 
 
