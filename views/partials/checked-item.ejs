@@ -1,0 +1,20 @@
+
+    <div class="item" id=<%=id%> checked>
+        <input type="checkbox" class="checkbox"></input>
+        <p class="item-name" contenteditable><%= item %></p>
+        <div class="quantity-price-container">
+            <input type="text" class="item-quantity" value= <%=quantity%> ></input>
+            <input type="text" class="unit-price" value= <%=unitPrice%> ></input>
+            <i class="fas fa-trash"></i>
+        </div>
+        <div class="noteTotalprice" noDisplay>
+            <div class="note">
+                <p>note</p> 
+                <textarea class="noteInput"> <%=note%> </textarea>
+            </div>
+            <div class="totalPrice">
+                <p class="priceLabel">total price</p>
+                <p class="priceDisplay"> <%=totalPrice%> </p>
+            </div>
+        </div>
+    </div>

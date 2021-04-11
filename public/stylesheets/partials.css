@@ -38,6 +38,21 @@
 [noDisplay]{
     display: none !important;
 }
+[checked]{
+    background-color: #e7e5e5;
+}
+.item[checked] > input[type="checkbox"]{
+    margin: 0 3px 0 4px;
+    min-width: 15px;
+    min-height: 22px;
+    border-radius: 3px;
+    transform: rotate(45deg);
+    border: none;
+    border-right: solid 5px #7868E6;
+    border-bottom: solid 5px #7868E6;
+    background: none;
+}
+
 .item{
     display: flex;
     align-items: center;
@@ -56,17 +71,7 @@ input[type = "checkbox"]{
     background: #FFFFFF;
     border: 1px solid #7868E6;
 }
-input[type = "checkbox"]:checked{
-    margin: 0 3px 0 4px;
-    min-width: 15px;
-    min-height: 22px;
-    border-radius: 3px;
-    transform: rotate(45deg);
-    border: none;
-    border-right: solid 5px #7868E6;
-    border-bottom: solid 5px #7868E6;
-    background: none;
-}
+
 .item-name{
     width: 30%;
     margin-left: 10px;

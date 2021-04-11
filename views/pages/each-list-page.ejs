@@ -42,8 +42,19 @@
                 
             <div class="items">
                 <% if(itemArr !== []) { %>
-                    <% itemArr.forEach(returnedItem => { %>
+                    <% const uncheckedArr = itemArr.filter(item => item.checked == false) %>
+                    <% const checkedArr = itemArr.filter(item => item.checked == true) %>
+                    <% uncheckedArr.forEach(returnedItem => { %>
                         <%-include("../partials/item.ejs",{item: returnedItem.itemName, 
+                            quantity: returnedItem.itemQuantity,
+                            unitPrice: returnedItem.unitPrice || 0,
+                            id: returnedItem._id,
+                            totalPrice: returnedItem.totalPrice,
+                            note: returnedItem.note}) %>
+                    <%  } ) %>
+
+                    <% checkedArr.forEach(returnedItem => { %>
+                        <%-include("../partials/checked-item.ejs",{item: returnedItem.itemName, 
                             quantity: returnedItem.itemQuantity,
                             unitPrice: returnedItem.unitPrice || 0,
                             id: returnedItem._id,

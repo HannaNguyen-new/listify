@@ -2,6 +2,8 @@
 /* each-list-page*/
 
 
+
+
 // show, hide button
 function toggle(arr, attribute) {
   arr.forEach((el) => el.toggleAttribute(attribute));
@@ -36,11 +38,14 @@ checkbox.forEach(node => node.addEventListener("click", event =>{
       const id = node.parentElement.getAttribute("id");
       const checkedItem = document.getElementById(id);
       const index = Array.from(items.children).findIndex(el => el.getAttribute("id") === id);
+      const url = window.location.href + "/items/" + id;
       toggle([checkedItem],"checked");
         if(checkedItem.hasAttribute("checked")){
           check(checkedItem,items,index);
+          axios.patch(url,{checked: true})
         }else{
-          uncheck(checkedItem,items)
+          uncheck(checkedItem,items);
+          axios.patch(url,{checked:false})
         }
      
      
