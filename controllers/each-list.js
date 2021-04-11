@@ -14,7 +14,8 @@ export const createList = async function(req, res){
 export const renderAll = async function(req,res){
   const id = req.params.id;
   await findList(id)
-   .then(result => res.render("../views/pages/each-list-page",{list_name: result.listName, itemArr: result.itemArray, sum : result.sumToBuy}))
+   .then(result => res.render("../views/pages/each-list-page",
+   {list_name: result.listName, itemArr: result.itemArray, sum: result.sumToBuy, purchased: result.sumPurchased}))
    .catch(err => console.log(err))
 }
 // update list name

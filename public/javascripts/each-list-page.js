@@ -31,35 +31,35 @@ item.forEach((el) =>
 );
 
 // move checked item
+const purchased = document.querySelector(".purchased")
 const items = document.querySelector(".items");
 const checkbox = document.querySelectorAll(".checkbox");
-checkbox.forEach(node => node.addEventListener("click", event =>{
-      const node = event.target;
-      const id = node.parentElement.getAttribute("id");
-      const checkedItem = document.getElementById(id);
-      const index = Array.from(items.children).findIndex(el => el.getAttribute("id") === id);
-      const url = window.location.href + "/items/" + id;
-      toggle([checkedItem],"checked");
-        if(checkedItem.hasAttribute("checked")){
-          check(checkedItem,items,index);
-          axios.patch(url,{checked: true})
-        }else{
-          uncheck(checkedItem,items);
-          axios.patch(url,{checked:false})
-        }
-     
-     
- }
+checkbox.forEach(node => node.addEventListener("click", event => {
+  const node = event.target;
+  const id = node.parentElement.getAttribute("id");
+  const checkedItem = document.getElementById(id);
+  const index = Array.from(items.children).findIndex(el => el.getAttribute("id") === id);
+  const url = window.location.href + "/items/" + id;
+  toggle([checkedItem], "checked");
+  if (checkedItem.hasAttribute("checked")) {
+    check(checkedItem, items, index);
+    update(url, { checked: true }).then(res => purchased.innerHTML = "Purchased: " + res.data[2])
+  } else {
+    uncheck(checkedItem, items);
+    update(url, { checked: false }).then(res => purchased.innerHTML = "Purchased: " + res.data[2])
+  }
+
+}
 ));
 
-function check(node,parent,index) {
+function check(node, parent, index) {
   node.remove();
   parent.appendChild(node);
-  node.setAttribute("oldIndex",index)
+  node.setAttribute("oldIndex", index)
 }
-function uncheck(node,parent){
+function uncheck(node, parent) {
   const i = node.getAttribute("oldIndex")
-  parent.insertBefore(node,parent.children[i])
+  parent.insertBefore(node, parent.children[i])
 }
 
 /*--------- Dealing with database----------*/
@@ -74,8 +74,8 @@ function debounce(fn, delay) {
   };
 }
 /* function update */
-function update(str, url, obj) {
-    return axios.patch(url, obj);
+function update(url, obj) {
+  return axios.patch(url, obj);
 }
 
 /* update listname*/
@@ -83,9 +83,9 @@ const listNameInput = document.querySelector(".list-name-input");
 listNameInput.addEventListener("keyup", debounce(() => {
   const url = window.location.href;
   const obj = { listName: listNameInput.textContent };
-  update(listNameInput.textContent, url, obj);
+  update(url, obj);
 
-},1000) 
+}, 1000)
 );
 
 /*add item*/
@@ -101,19 +101,20 @@ itemInput.addEventListener("keyup", (event) => {
 });
 
 /* update item*/
+const toBuy = document.querySelector(".to-buy");
 const itemQuantity = document.querySelectorAll(".item-quantity");
 const unitPrice = document.querySelectorAll(".unit-price");
 const noteInput = document.querySelectorAll(".noteInput");
 const arr = [...itemQuantity, ...unitPrice, ...noteInput];
 arr.forEach(node =>
-  node.addEventListener("keyup", debounce(() =>{
+  node.addEventListener("keyup", debounce(() => {
     let nodeName = node.getAttribute("class");
     nodeName =
       nodeName === "item-quantity"
         ? "itemQuantity"
         : nodeName === "unit-price"
-        ? "unitPrice"
-        : "note";
+          ? "unitPrice"
+          : "note";
     const parent = node.closest(".item");
     const parentId = parent.getAttribute("id");
     const url = window.location.href + "/items/" + parentId;
@@ -121,15 +122,16 @@ arr.forEach(node =>
     const updatedTotalPrice =
       parent.lastElementChild.lastElementChild.lastElementChild;
 
-      (async function (){
-        await update(node.value, url, obj)
-          .then(res => {
-            console.log(res.data)
-             updatedTotalPrice.innerHTML = res.data.itemQuantity * res.data.unitPrice
-          })
-          .catch(err => console.log(err));
-      })()
-  },500)
+    (async function () {
+      await update(url, obj)
+        .then(res => {
+          //console.log(res.data)
+          updatedTotalPrice.innerHTML = res.data[0].itemQuantity * res.data[0].unitPrice;
+          toBuy.innerHTML = "Plan to buy: ￥ " + res.data[1]
+        })
+        .catch(err => console.log(err));
+    })()
+  }, 500)
   ))
 
 
@@ -142,17 +144,17 @@ itemName.forEach((node) => {
       const parentId = node.parentNode.getAttribute("id");
       const url = window.location.href + "/items/" + parentId;
       const obj = { itemName: node.textContent };
-      update(node.value, url, obj);
+      update(url, obj);
     }, 2000)
   );
 });
 
 /* delete item*/
 const deleteIcon = document.querySelectorAll(".fa-trash");
-deleteIcon.forEach(node => node.addEventListener("click", ()=> {
+deleteIcon.forEach(node => node.addEventListener("click", () => {
   const parent = node.closest(".item");
   const parentId = parent.getAttribute("id");
   const url = window.location.href + "/items/" + parentId;
   axios.delete(url)
-  .then(res => window.location.href = res.data)
+    .then(res => window.location.href = res.data)
 }))
