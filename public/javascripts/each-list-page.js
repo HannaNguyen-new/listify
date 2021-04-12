@@ -46,7 +46,7 @@ checkbox.forEach(node => node.addEventListener("click", event => {
     update(url, { checked: true }).then(res => purchased.innerHTML = "Purchased: " + res.data[2])
   } else {
     uncheck(checkedItem, items);
-    update(url, { checked: false }).then(res => purchased.innerHTML = "Purchased: " + res.data[2])
+    update(url, { checked: false }).then(res => purchased.innerHTML = "Purchased:￥ " + res.data[2])
   }
 
 }

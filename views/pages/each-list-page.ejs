@@ -70,7 +70,7 @@
                 <div class="bottom-container">
                     <div class="bottom-text">
                         <p class="to-buy">Plan to buy: ￥ <%= sum%> </p>
-                        <p class="purchased">Purchased: <%= purchased%> </p>
+                        <p class="purchased">Purchased: ￥ <%= purchased%> </p>
                     </div>
                 </div>
                 <a class="hide btn" >Hide</a>
@@ -79,10 +79,10 @@
         
         </div>
         <!--Transition layer to all lists page-->
-        <div class="transition" hidden>
-            <div class="transition-btn">All lists</div>
+        <div class="transition" >
+            <a class="transition-btn"  href="/all-lists"> All lists</a>
         </div>
-        <div class="overlay" hidden>
+        <div class="overlay" >
         <script src= "/javascripts/each-list-page.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>

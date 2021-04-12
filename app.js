@@ -27,6 +27,10 @@ app.get("/", function(req, res){
     res.render("pages/first-page.ejs")
 })
 
+app.get("/all-lists", function(req,res){
+    res.render("pages/all-list-page.ejs")
+})
+
 
 
 

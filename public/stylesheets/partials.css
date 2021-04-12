@@ -132,3 +132,21 @@ input[type = "checkbox"]{
     transform: translateX(10px);
     
 }
+
+/*list*/
+.list{
+    background-color: #ffffff;
+    width: 100px;
+    height: 120px;
+    border-radius: 5px;
+    text-align: center;
+}
+.list p{
+    margin-top: 15px;
+    margin-left: 10px;
+    width: 80%;
+}
+.icons{
+    margin-top: 60px;
+    margin-right: 10px;
+}
