@@ -4,7 +4,8 @@ import path from "path";
 import {fileURLToPath} from "url";
 
 // Require routes
-import {router} from "./routes/router.js";
+import router from "./routes/router.js";
+import allListsRouter from "./routes/allListRouter.js";
 
 // Connect with database
 import mongoose from "mongoose";
@@ -20,18 +21,13 @@ app.use(express.static(path.join(__dirname,"/public")));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/each-list", router)
+app.use("/each-list", router);
+app.use("/all-lists", allListsRouter)
 app.set('view engine',"ejs")
 
 app.get("/", function(req, res){
     res.render("pages/first-page.ejs")
 })
-
-app.get("/all-lists", function(req,res){
-    res.render("pages/all-list-page.ejs")
-})
-
-
 
 
 

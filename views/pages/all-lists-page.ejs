@@ -19,12 +19,14 @@
    
    <main>
       <div class="lists">
-         <%-include("../partials/list.ejs") %>
-         <%-include("../partials/list.ejs") %>
-         <%-include("../partials/list.ejs") %>
-         <%-include("../partials/list.ejs") %>
-         <%-include("../partials/list.ejs") %>
-         <%-include("../partials/list.ejs") %>
+       
+         <% lists.forEach(list => { %>
+            <%-include("../partials/list.ejs", {id: list.id,listName:list.listName}) %>
+
+         <%}) %>
+
+        
+
       </div>
       <div class="text-button-wrapper">
          <p class="text">Tap to create a new list</p>
@@ -33,5 +35,7 @@
          </div>
       </div>
    </main>
+   <script src= "/javascripts/all-lists-page.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 </html>

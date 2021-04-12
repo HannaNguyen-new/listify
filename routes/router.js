@@ -10,4 +10,4 @@ router.patch("/:id", eachListController.updateListName)
 router.patch("/:id/items/:itemid", eachListController.update)
 router.delete("/:id/items/:itemid", eachListController.del)
 
-export {router}
+export default router;

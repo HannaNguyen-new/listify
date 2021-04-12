@@ -92,5 +92,10 @@ export async function deleteItem(id, itemId) {
    return list
 
 }
+/* all lists page */
+export async function findAllLists(){
+   return ListCollection.find();
+
+}
 
 

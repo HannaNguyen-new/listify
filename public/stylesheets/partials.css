@@ -141,6 +141,9 @@ input[type = "checkbox"]{
     border-radius: 5px;
     text-align: center;
 }
+.list:hover{
+    cursor: pointer;
+}
 .list p{
     margin-top: 15px;
     margin-left: 10px;
