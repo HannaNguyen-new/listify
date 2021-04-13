@@ -95,7 +95,12 @@ export async function deleteItem(id, itemId) {
 /* all lists page */
 export async function findAllLists(){
    return ListCollection.find();
+}
 
+export async function findAndDeleteList(id){
+    await ListCollection.findByIdAndDelete(id)
+    .then(result => result)
+    .catch(err => console.log(err))
 }
 
 

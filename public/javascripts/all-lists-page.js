@@ -1,9 +1,13 @@
 
 
+
 const trash = document.querySelectorAll(".fa-trash");
-trash.forEach(el => el.addEventListener("click", (event)=>{
-    alert("hi");
-    event.preventDefault()
+trash.forEach(el => el.addEventListener("click", event => {
+   event.preventDefault()
+   const id = event.target.closest(".list").getAttribute("id");
+   const url = window.location.href + "/" + id
+   axios.delete(url);
+   window.location.href = window.location.href;
 }))
 
 
