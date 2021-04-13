@@ -140,16 +140,15 @@ input[type = "checkbox"]{
     height: 120px;
     border-radius: 5px;
     text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 .list:hover{
     cursor: pointer;
 }
-.list p{
-    margin-top: 15px;
-    margin-left: 10px;
-    width: 80%;
-}
-.icons{
-    margin-top: 60px;
-    margin-right: 10px;
+.list:active,
+.list:visited{
+    color: #A59C9C;
 }

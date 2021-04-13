@@ -23,12 +23,8 @@
        </div>
 
     </main>
-    <!--Transition layer to each-list-page-->
-    <form class="list-name-input-container" hidden method="POST" action="/each-list">
-        <input class="list-input" type="text" placeholder="List name" autofocus name="listName">
-        <div class="createList-btn" >Create list</div>
-    </form>
-    <div class="overlay" hidden>
+    <!-- Transition layer to each-list-page-->
+   <%-include("../partials/create-list.ejs") %>
     </div>
     <script src= "/javascripts/first-page.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

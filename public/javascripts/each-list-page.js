@@ -43,7 +43,7 @@ checkbox.forEach(node => node.addEventListener("click", event => {
   toggle([checkedItem], "checked");
   if (checkedItem.hasAttribute("checked")) {
     check(checkedItem, items, index);
-    update(url, { checked: true }).then(res => purchased.innerHTML = "Purchased: " + res.data[2])
+    update(url, { checked: true }).then(res => purchased.innerHTML = "Purchased:￥ " + res.data[2])
   } else {
     uncheck(checkedItem, items);
     update(url, { checked: false }).then(res => purchased.innerHTML = "Purchased:￥ " + res.data[2])
@@ -61,6 +61,18 @@ function uncheck(node, parent) {
   const i = node.getAttribute("oldIndex")
   parent.insertBefore(node, parent.children[i])
 }
+
+// all-list transition slide
+const navIcon = document.querySelector(".nav-icon");
+const transition = document.querySelector(".transition");
+const overlay = document.querySelector(".overlay");
+navIcon.addEventListener("click", ()=>{
+   toggle([transition,overlay],"hidden")
+})
+overlay.addEventListener("click", ()=>{
+   toggle([transition,overlay],"hidden")
+})
+
 
 /*--------- Dealing with database----------*/
 /* function debounce */
