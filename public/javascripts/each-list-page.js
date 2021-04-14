@@ -111,6 +111,15 @@ itemInput.addEventListener("keyup", (event) => {
     }
   }
 });
+itemInput.addEventListener("focusout", (event) => {
+  
+    const url = window.location.href;
+    const obj = { itemName: itemInput.value };
+    if (itemInput.value !== "") {
+      axios.post(url, obj).then((res) => (window.location.href = res.data));
+    }
+  
+});
 
 /* update item*/
 const toBuy = document.querySelector(".to-buy");
