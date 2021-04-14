@@ -111,7 +111,7 @@ itemInput.addEventListener("keyup", (event) => {
     }
   }
 });
-itemInput.addEventListener("focusout", (event) => {
+itemInput.addEventListener("focusout", () => {
   
     const url = window.location.href;
     const obj = { itemName: itemInput.value };

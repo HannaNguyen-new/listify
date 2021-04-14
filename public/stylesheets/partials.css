@@ -135,6 +135,7 @@ input[type = "checkbox"]{
 
 /*list*/
 .list{
+    color: #A59C9C;
     background-color: #ffffff;
     width: 100px;
     height: 120px;
@@ -148,6 +149,7 @@ input[type = "checkbox"]{
 .list:hover{
     cursor: pointer;
 }
+
 .list:active,
 .list:visited{
     color: #A59C9C;
