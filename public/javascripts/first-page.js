@@ -16,11 +16,12 @@ createListBtn.addEventListener("click",() => {
 
 // all-list transition slide
 const navIcon = document.querySelector(".nav-icon");
+const allListOverlay = document.querySelector(".all-list");
 const transition = document.querySelector(".transition");
 navIcon.addEventListener("click", ()=>{
-   toggle([transition,overlay],"hidden")
+   toggle([transition,allListOverlay],"hidden")
 })
-overlay.addEventListener("click", ()=>{
-   toggle([transition,overlay],"hidden")
+allListOverlay.addEventListener("click", ()=>{
+   toggle([transition,allListOverlay],"hidden")
 })
 
