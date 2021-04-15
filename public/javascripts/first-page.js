@@ -14,3 +14,13 @@ createListBtn.addEventListener("click",() => {
    listNameInput.submit();
 })
 
+// all-list transition slide
+const navIcon = document.querySelector(".nav-icon");
+const transition = document.querySelector(".transition");
+navIcon.addEventListener("click", ()=>{
+   toggle([transition,overlay],"hidden")
+})
+overlay.addEventListener("click", ()=>{
+   toggle([transition,overlay],"hidden")
+})
+

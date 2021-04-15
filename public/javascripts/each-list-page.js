@@ -102,24 +102,19 @@ listNameInput.addEventListener("keyup", debounce(() => {
 
 /*add item*/
 const itemInput = document.querySelector(".list-item-input");
+const addItem = () => {
+  const url = window.location.href;
+  const obj = { itemName: itemInput.value };
+  if (itemInput.value !== "") {
+    axios.post(url, obj).then((res) => (window.location.href = res.data));
+  }
+}
 itemInput.addEventListener("keyup", (event) => {
   if (event.keyCode == 13) {
-    const url = window.location.href;
-    const obj = { itemName: itemInput.value };
-    if (itemInput.value !== "") {
-      axios.post(url, obj).then((res) => (window.location.href = res.data));
-    }
+   addItem()
   }
 });
-itemInput.addEventListener("focusout", () => {
-  
-    const url = window.location.href;
-    const obj = { itemName: itemInput.value };
-    if (itemInput.value !== "") {
-      axios.post(url, obj).then((res) => (window.location.href = res.data));
-    }
-  
-});
+itemInput.addEventListener("focusout", addItem);
 
 /* update item*/
 const toBuy = document.querySelector(".to-buy");
