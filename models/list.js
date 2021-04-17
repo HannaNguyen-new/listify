@@ -33,10 +33,11 @@ listSchema
       const purchasedArr = this.itemArray.filter(item => item.checked == true);
       return purchasedArr.reduce((acc, curr) => acc + curr.totalPrice, 0)
    })
+
 const ListCollection = mongoose.model("test", listSchema);
+
 export async function create(userInput) {
-   const newList = new ListCollection();
-   newList.listName = userInput;
+   const newList = new ListCollection({listName: userInput});
    await newList.save()
    return newList;
 }
@@ -103,4 +104,16 @@ export async function findAndDeleteList(id){
     .catch(err => console.log(err))
 }
 
+export async function duplicate(id){
+   const list = await findList(id);
+   const duplicateList = new ListCollection(list);
+   duplicateList.set({
+      _id : new mongoose.Types.ObjectId(),
+      listName: list.listName + " copy"
+
+   })
+   duplicateList.isNew = true;
+   await duplicateList.save();
+}
+ 
 

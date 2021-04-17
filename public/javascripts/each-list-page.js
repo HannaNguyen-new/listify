@@ -22,13 +22,22 @@ show.addEventListener("click", () => {
 // slide up and down
 const item = document.querySelectorAll(".item");
 const noteAndPrice = document.querySelectorAll(".noteTotalprice");
-item.forEach((el) =>
+item.forEach(el => {
   el.addEventListener("click", (event) => {
-    if (event.target.className === "item") {
-      el.childNodes[7].toggleAttribute("noDisplay");
+      const children = event.target.children;
+      const elToToggle = Array.from(children).filter(child => child.className === "noteTotalprice"); // elToToggle is an array
+      toggle(elToToggle,"noDisplay")
+  })
+});
+
+noteAndPrice.forEach(el=>{
+  el.addEventListener("click", event => {
+    if(event.target.className !== "noteInput"){
+      toggle([el],"noDisplay")
     }
   })
-);
+})
+
 
 // move checked item
 const purchased = document.querySelector(".purchased")

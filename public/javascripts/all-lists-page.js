@@ -5,12 +5,19 @@ const trash = document.querySelectorAll(".fa-trash");
 trash.forEach(el => el.addEventListener("click", event => {
    event.preventDefault()
    const id = event.target.closest(".list").getAttribute("id");
-   const url = window.location.href + "/" + id
-   axios.delete(url);
+   const url = window.location.href + "/" + id;
+   axios.delete(url)
    window.location.href = window.location.href;
 }))
 
-
+const clone = document.querySelectorAll(".fa-clone");
+clone.forEach(el => el.addEventListener("click", event => {
+   event.preventDefault();
+   const id = event.target.closest(".list").getAttribute("id");
+   const url = window.location.href + "/" + id;
+   axios.post(url);
+   window.location.href = window.location.href;
+}))
 /* Transition layer to each-list-page */
 const createBtn = document.querySelector(".button");
 const overlay = document.querySelector(".overlay");

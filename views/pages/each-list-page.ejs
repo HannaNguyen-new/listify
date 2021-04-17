@@ -23,6 +23,7 @@
             <div class="top-container">
                 <div class="list-name">
                     <% if(list_name){ %>
+                      
                         <p contenteditable class="list-name-input"> <%= list_name %> </p>
                         
                         <% } else{ %>
@@ -41,7 +42,7 @@
                 </div>
                 
             <div class="items">
-                <% if(itemArr !== []) { %>
+                
                     <% const uncheckedArr = itemArr.filter(item => item.checked == false) %>
                     <% const checkedArr = itemArr.filter(item => item.checked == true) %>
                     <% uncheckedArr.forEach(returnedItem => { %>
@@ -61,9 +62,7 @@
                             totalPrice: returnedItem.totalPrice,
                             note: returnedItem.note}) %>
                     <%  } ) %>
-                <% } else { %>
-                    <p>No items added.</p>
-                <%  } %>
+             
             </div>
             </div>
             <div class="bottom-wrapper">

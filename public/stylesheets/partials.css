@@ -73,7 +73,7 @@ input[type = "checkbox"]{
 }
 
 .item-name{
-    width: 30%;
+    width: 25%;
     margin-left: 10px;
 }
 
@@ -107,7 +107,7 @@ input[type = "checkbox"]{
 }
 
 .noteInput{
-    width: 50%;
+    width: 60%;
     height: 100%;
     margin-left: 10px;
     border: solid 1px #EDEEF7;
@@ -124,7 +124,8 @@ input[type = "checkbox"]{
 
 .priceLabel{
     width: 3em;
-    margin: 0 1em;
+    margin-right: 10px;
+    transform: translateX(-10px);
 }
 
 .fa-trash{

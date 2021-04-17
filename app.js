@@ -9,8 +9,8 @@ import allListsRouter from "./routes/allListRouter.js";
 
 // Connect with database
 import mongoose from "mongoose";
-//const url = "mongodb://localhost:27017/listifyDB";
-const url = process.env.MONGODB_URI;
+const url = "mongodb://localhost:27017/listifyDB";
+//const url = process.env.MONGODB_URI;
 mongoose.connect(url,{useNewUrlParser:true, useUnifiedTopology:true})
 .then(success => console.log("Connected to database"))
 .catch(err => console.log(err))
@@ -24,10 +24,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/each-list", router);
 app.use("/all-lists", allListsRouter)
-app.set('view engine',"ejs")
+app.set('view engine',"ejs");
+app.set('views',"./views/pages"); // render path will be shorter
 
 app.get("/", function(req, res){
-    res.render("pages/first-page.ejs")
+    res.render("first-page")
 })
 
 
