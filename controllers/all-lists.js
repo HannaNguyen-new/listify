@@ -9,10 +9,11 @@ await findAllLists()
 export const deleteList = async function(req, res){
 const id = req.params.id;
 await findAndDeleteList(id)
+res.json({"url": "/all-lists"})
 }
 
 export const duplicateList = async function(req,res,next){
    const id = req.params.id;
    await duplicate(id);
-
+   res.json({"url": "/all-lists"})
 }

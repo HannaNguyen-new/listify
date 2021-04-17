@@ -7,7 +7,7 @@ trash.forEach(el => el.addEventListener("click", event => {
    const id = event.target.closest(".list").getAttribute("id");
    const url = window.location.href + "/" + id;
    axios.delete(url)
-   window.location.href = window.location.href;
+   .then(res => window.location.href = res.data.url)
 }))
 
 const clone = document.querySelectorAll(".fa-clone");
@@ -15,8 +15,8 @@ clone.forEach(el => el.addEventListener("click", event => {
    event.preventDefault();
    const id = event.target.closest(".list").getAttribute("id");
    const url = window.location.href + "/" + id;
-   axios.post(url);
-   window.location.href = window.location.href;
+   axios.post(url)
+   .then(res => window.location.href = res.data.url)
 }))
 /* Transition layer to each-list-page */
 const createBtn = document.querySelector(".button");
