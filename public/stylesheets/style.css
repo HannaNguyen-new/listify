@@ -216,18 +216,20 @@ header{
 
 /*All-list-page*/
 .lists{
-     max-width: 700px;
-     height: 80vh;
+     max-width: 90vw;  
      margin: 2em auto;
      display: flex;
      flex-flow: row wrap;
-     justify-content: space-around;
-     align-content: space-around;
+     justify-content: space-evenly;
+     align-content: space-evenly;
  
 }
+.list{
+    margin: 0.5em
+}
 .text-button-wrapper{
-    width: 300px;
-    margin: 10px auto;
+    width: 320px;
+    margin: 50px auto 0;
     display: flex;
 }
 .text{

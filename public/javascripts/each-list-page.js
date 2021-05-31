@@ -20,15 +20,21 @@ show.addEventListener("click", () => {
 });
 
 // slide up and down
-const item = document.querySelectorAll(".item");
+const expand = document.querySelectorAll(".expand");
+const shrink = document.querySelectorAll(".shrink");
 const noteAndPrice = document.querySelectorAll(".noteTotalprice");
-item.forEach(el => {
-  el.addEventListener("click", (event) => {
-      const children = event.target.children;
-      const elToToggle = Array.from(children).filter(child => child.className === "noteTotalprice"); // elToToggle is an array
-      toggle(elToToggle,"noDisplay")
-  })
-});
+
+[...expand,...shrink].forEach(el => el.addEventListener("click", (event) =>{
+  const clickedIcon = event.target
+  const parent = clickedIcon.parentElement.parentElement;
+  const children = parent.children;
+  const priceDisplay = Array.from(children).filter(child => child.className === "noteTotalprice"); // priceDisplay is an array
+  const sibling = clickedIcon.className.includes("expand")? clickedIcon.nextElementSibling : clickedIcon.previousElementSibling;
+  toggle([...priceDisplay,event.target, sibling],"noDisplay")
+  console.log(sibling)
+}))
+
+
 
 noteAndPrice.forEach(el=>{
   el.addEventListener("click", event => {
