@@ -1,9 +1,6 @@
 /*--------- Animation-----------*/
 /* each-list-page*/
 
-
-
-
 // show, hide button
 function toggle(arr, attribute) {
   arr.forEach((el) => el.toggleAttribute(attribute));
@@ -31,18 +28,8 @@ const noteAndPrice = document.querySelectorAll(".noteTotalprice");
   const priceDisplay = Array.from(children).filter(child => child.className === "noteTotalprice"); // priceDisplay is an array
   const sibling = clickedIcon.className.includes("expand")? clickedIcon.nextElementSibling : clickedIcon.previousElementSibling;
   toggle([...priceDisplay,event.target, sibling],"noDisplay")
-  console.log(sibling)
+
 }))
-
-
-
-noteAndPrice.forEach(el=>{
-  el.addEventListener("click", event => {
-    if(event.target.className !== "noteInput"){
-      toggle([el],"noDisplay")
-    }
-  })
-})
 
 
 // move checked item

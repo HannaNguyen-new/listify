@@ -16,7 +16,7 @@ header{
     height: 3rem;
 }
 .container{
-    margin: 20vh auto;
+    margin: 0 auto 20vh;
     text-align: center;
 }
 .instruction{

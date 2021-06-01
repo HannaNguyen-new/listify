@@ -2,6 +2,10 @@
     <div class="item" id=<%=id%> checked>
         <input type="checkbox" class="checkbox"></input>
         <p class="item-name" contenteditable><%= item %></p>
+        <div class="arrows">
+            <i class="expand fas fa-chevron-down" ></i>
+            <i class="shrink fas fa-chevron-up" noDisplay></i>
+        </div>
         <div class="quantity-price-container">
             <input type="text" class="item-quantity" value= <%=quantity%> ></input>
             <input type="text" class="unit-price" value= <%=unitPrice%> ></input>
