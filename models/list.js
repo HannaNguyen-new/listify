@@ -66,7 +66,7 @@ export async function findAndAddItem(id, name, quantity, price) {
                list.save(); //subdocs are only saved when you execute save() on parent docs
             }
          }
-         return list;
+         return list.itemArray[list.itemArray.length - 1];
       })
       .catch(err => console.log(err))
    return list;

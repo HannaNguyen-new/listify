@@ -24,7 +24,8 @@ export const updateListName = async function(req,res){
   const id = req.params.id;
   const updatedName = req.body.listName;
   await findAndUpdateListName(id,updatedName)
-  .then(result => res.render("each-list-page",{list_name: result.listName}))
+  .then(result => res.render("each-list-page",{list_name: result.listName,itemArr:[],
+  sum: 0, purchased: 0}))
   .catch(err => console.log(err))
 }
 // add new item
@@ -34,7 +35,7 @@ export const addItem = async function(req,res){
   const item_quantity = 1;
   const unit_price = 0;
  await findAndAddItem(id, item_name, item_quantity,unit_price)
-  .then(result => res.json(result.url))
+  .then(result => res.send(result))
   .catch(err => console.log(err)) 
 }
 // update item properties

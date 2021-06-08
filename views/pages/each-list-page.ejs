@@ -42,7 +42,7 @@
                 </div>
                 
             <div class="items">
-                
+                <% if(itemArr.length > 0){ %>
                     <% const uncheckedArr = itemArr.filter(item => item.checked == false) %>
                     <% const checkedArr = itemArr.filter(item => item.checked == true) %>
                     <% uncheckedArr.forEach(returnedItem => { %>
@@ -62,6 +62,11 @@
                             totalPrice: returnedItem.totalPrice,
                             note: returnedItem.note}) %>
                     <%  } ) %>
+
+                <% }else { %>
+                    <p>No items added</p>
+
+                <% } %> 
              
             </div>
             </div>
