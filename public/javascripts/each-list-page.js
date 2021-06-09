@@ -230,7 +230,7 @@ function deleteItem(target) {
     .then(res => window.location.href = res.data)
 
 }
-document.addEventListener("click", event => {
+document.body.addEventListener("click", event => {
   const target = event.target;
   if (target.matches(".fa-trash")) {
     deleteItem(target)
