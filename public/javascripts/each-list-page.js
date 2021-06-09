@@ -235,4 +235,4 @@ document.body.addEventListener("click", event => {
   if (target.matches(".fa-trash")) {
     deleteItem(target)
   }
-})
+}, true)
