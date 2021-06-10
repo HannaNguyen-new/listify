@@ -38,25 +38,26 @@ document.addEventListener("click", event => {
 
 // move checked item
 const purchased = document.querySelector(".purchased")
-const items = document.querySelector(".items");
-const checkbox = document.querySelectorAll(".checkbox");
-checkbox.forEach(node => node.addEventListener("click", event => {
+document.addEventListener("click", event => {
   const node = event.target;
-  const id = node.parentElement.getAttribute("id");
-  const checkedItem = document.getElementById(id);
-  const index = Array.from(items.children).findIndex(el => el.getAttribute("id") === id);
-  const url = window.location.href + "/items/" + id;
-  toggle([checkedItem], "checked");
-  if (checkedItem.hasAttribute("checked")) {
-    check(checkedItem, items, index);
-    update(url, { checked: true }).then(res => purchased.innerHTML = "Purchased:￥ " + res.data[2])
-  } else {
-    uncheck(checkedItem, items);
-    update(url, { checked: false }).then(res => purchased.innerHTML = "Purchased:￥ " + res.data[2])
+  if(isMatched(node,[".checkbox"])){
+    console.log(items)
+    const id = node.parentElement.getAttribute("id");
+    const checkedItem = document.getElementById(id);
+    const index = Array.from(items.children).findIndex(el => el.getAttribute("id") === id);
+    const url = window.location.href + "/items/" + id;
+    toggle([checkedItem], "checked");
+    if (checkedItem.hasAttribute("checked")) {
+      check(checkedItem, items, index);
+      update(url, { checked: true }).then(res => purchased.innerHTML = "Purchased:￥ " + res.data[2])
+    } else {
+      uncheck(checkedItem, items);
+      update(url, { checked: false }).then(res => purchased.innerHTML = "Purchased:￥ " + res.data[2])
+    }
   }
 
 }
-));
+);
 
 function check(node, parent, index) {
   node.remove();
@@ -130,6 +131,7 @@ function clearContents(node, arr) {
   return contents
 }
 /*add item*/
+const items = document.querySelector(".items");
 const item = document.querySelector(".item")
 const itemInput = document.querySelector(".list-item-input");
 const addItem = async () => {
