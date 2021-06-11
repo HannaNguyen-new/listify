@@ -88,7 +88,8 @@ export async function updateItem(id, itemId, key, value) {
 
 export async function deleteItem(id, itemId) {
    const list = await findList(id);
-   await list.itemArray.id(itemId).remove();
+   const item = await list.itemArray.id(itemId);
+   await item.remove();
    await list.save();
    return list
 

@@ -40,8 +40,7 @@ document.addEventListener("click", event => {
 const purchased = document.querySelector(".purchased")
 document.addEventListener("click", event => {
   const node = event.target;
-  if(isMatched(node,[".checkbox"])){
-    console.log(items)
+  if(node.matches(".checkbox")){
     const id = node.parentElement.getAttribute("id");
     const checkedItem = document.getElementById(id);
     const index = Array.from(items.children).findIndex(el => el.getAttribute("id") === id);
@@ -232,9 +231,9 @@ function deleteItem(target) {
     .then(res => window.location.href = res.data)
 
 }
-document.body.addEventListener("click", event => {
+document.addEventListener("click", event => {
   const target = event.target;
   if (target.matches(".fa-trash")) {
     deleteItem(target)
   }
-}, true)
+})
