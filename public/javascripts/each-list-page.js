@@ -222,8 +222,10 @@ document.addEventListener("click", event => {
   }
 })
 document.addEventListener("touchend", event => {
-  event.preventDefault()
   const target = event.target;
+  if(!target.matches(".list-item-input")){
+    event.preventDefault()
+  }
   if(isMatched(target,[".expand",".shrink"])){
     slide(target)
   }else if (target.matches(".checkbox")){
@@ -236,7 +238,5 @@ document.addEventListener("touchend", event => {
     toggle([transition, overlay], "hidden")
   }else if(target.matches(".transition-btn")){
     window.location.href = "/all-lists"
-  }else{
-    addItem()
   }
 })
