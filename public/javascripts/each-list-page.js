@@ -220,3 +220,19 @@ document.addEventListener("click", event => {
    
   }
 })
+document.addEventListener("touchend", event => {
+  event.preventDefault()
+  const target = event.target;
+  if(isMatched(target,[".expand",".shrink"])){
+    slide(target)
+  }else if (target.matches(".checkbox")){
+    handleCheck(target)
+  }else if(target.matches(".fa-trash")){
+    deleteItem(target)
+  }else if(isMatched(target,[".hide",".show"])){
+    toggle([bottomContainer, hide, show], "hidden");
+  }else if(isMatched(target,[".icon",".nav-icon",".overlay"])){
+    toggle([transition, overlay], "hidden")
+   
+  }
+})
