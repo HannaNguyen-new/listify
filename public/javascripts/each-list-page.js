@@ -8,13 +8,7 @@ function toggle(arr, attribute) {
 
 const hide = document.querySelector(".hide");
 const show = document.querySelector(".show");
-const bottomContainer = document.querySelector(".bottom-container");
-hide.addEventListener("click", () => {
-  toggle([bottomContainer, hide, show], "hidden");
-});
-show.addEventListener("click", () => {
-  toggle([bottomContainer, hide, show], "hidden");
-});
+const bottomContainer = document.querySelector(".bottom-container")
 
 // slide up and down
 function slide(clickedIcon) {
@@ -22,7 +16,7 @@ function slide(clickedIcon) {
     const children = parent.children;
     const priceDisplay = Array.from(children).filter(child => child.className === "noteTotalprice"); // priceDisplay is an array
     const sibling = clickedIcon.className.includes("expand") ? clickedIcon.nextElementSibling : clickedIcon.previousElementSibling;
-    toggle([...priceDisplay, event.target, sibling], "noDisplay")
+    toggle([...priceDisplay, clickedIcon, sibling], "noDisplay")
 }
 
 // move checked item
@@ -54,15 +48,9 @@ function uncheck(node, parent) {
 }
 
 // all-list transition slide
-const navIcon = document.querySelector(".nav-icon");
+//const navIcon = document.querySelector(".nav-icon");
 const transition = document.querySelector(".transition");
 const overlay = document.querySelector(".overlay");
-navIcon.addEventListener("click", () => {
-  toggle([transition, overlay], "hidden")
-})
-overlay.addEventListener("click", () => {
-  toggle([transition, overlay], "hidden")
-})
 
 
 /*--------- Dealing with database----------*/
@@ -152,9 +140,6 @@ itemInput.addEventListener("focusout", addItem);
 /* update item*/
 
 const toBuy = document.querySelector(".to-buy");
-function isMatched(target, arr) {
-  return arr.some(selector => target.matches(selector))
-}
 
 async function updateItem(node) {
   let nodeName = node.getAttribute("class");
@@ -217,6 +202,9 @@ function deleteItem(target) {
 
 }
 
+function isMatched(target, arr) {
+  return arr.some(selector => target.matches(selector))
+}
 document.addEventListener("click", event => {
   const target = event.target;
   if(isMatched(target,[".expand",".shrink"])){
@@ -225,5 +213,10 @@ document.addEventListener("click", event => {
     handleCheck(target)
   }else if(target.matches(".fa-trash")){
     deleteItem(target)
+  }else if(isMatched(target,[".hide",".show"])){
+    toggle([bottomContainer, hide, show], "hidden");
+  }else if(isMatched(target,[".icon",".nav-icon",".overlay"])){
+    toggle([transition, overlay], "hidden")
+   
   }
 })
