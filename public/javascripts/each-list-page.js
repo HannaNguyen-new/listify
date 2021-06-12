@@ -40,6 +40,7 @@ document.addEventListener("click", event => {
 const purchased = document.querySelector(".purchased")
 document.addEventListener("click", event => {
   const node = event.target;
+  console.log(node)
   if(node.matches(".checkbox")){
     const id = node.parentElement.getAttribute("id");
     const checkedItem = document.getElementById(id);
