@@ -216,8 +216,9 @@ document.addEventListener("click", event => {
   }else if(isMatched(target,[".hide",".show"])){
     toggle([bottomContainer, hide, show], "hidden");
   }else if(isMatched(target,[".icon",".nav-icon",".overlay"])){
-    toggle([transition, overlay], "hidden")
-   
+    toggle([transition, overlay], "hidden") 
+  }else if(target.matches(".transition-btn")){
+    window.location.href = "/all-lists"
   }
 })
 document.addEventListener("touchend", event => {
@@ -235,5 +236,7 @@ document.addEventListener("touchend", event => {
     toggle([transition, overlay], "hidden")
   }else if(target.matches(".transition-btn")){
     window.location.href = "/all-lists"
+  }else{
+    event.returnValue = true
   }
 })
