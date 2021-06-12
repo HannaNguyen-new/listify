@@ -19,14 +19,8 @@ show.addEventListener("click", () => {
 // slide up and down
 const arrows = document.querySelectorAll(".arrows")
 arrows.forEach(element => 
-  
   element.addEventListener("click", event => {slide(event)})
-  
   )
-// document.addEventListener("touchend", event => {
-//   event.preventDefault();  
-//   slide(event)
-// })
 
 function slide(event) {
   const clickedIcon = event.target;
@@ -45,10 +39,6 @@ function slide(event) {
 // move checked item
 const purchased = document.querySelector(".purchased")
 document.addEventListener("click", event => handleCheck(event));
-// document.addEventListener("touchend", event => {
-//   event.preventDefault();
-//   handleCheck(event)
-// });
 
 function handleCheck(event){
   const node = event.target;
@@ -242,9 +232,13 @@ function deleteItem(target) {
     .then(res => window.location.href = res.data)
 
 }
-document.addEventListener("click", event => {
-  const target = event.target;
-  if (target.matches(".fa-trash")) {
-    deleteItem(target)
-  }
+const quantityPriceContainer = document.querySelectorAll(".quantity-price-container");
+quantityPriceContainer.forEach(element => {
+  element.addEventListener("click", event => {
+    const target = event.target;
+    if (target.matches(".fa-trash")) {
+      deleteItem(target)
+    }
+  })
+
 })
