@@ -55,7 +55,7 @@ export const  del = async function(req,res){
   const id = req.params.id;
   const itemId = req.params.itemid;
   await deleteItem(id,itemId)
-  .then(result => res.json(result.url))
+  .then(result => res.send("delete successfully"))
   .catch(err => console.log(err))
 }
 

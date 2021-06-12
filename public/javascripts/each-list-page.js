@@ -48,7 +48,6 @@ function uncheck(node, parent) {
 }
 
 // all-list transition slide
-//const navIcon = document.querySelector(".nav-icon");
 const transition = document.querySelector(".transition");
 const overlay = document.querySelector(".overlay");
 
@@ -193,12 +192,14 @@ document.addEventListener("keyup", event => {
 )
 
 /* delete item*/
-function deleteItem(target) {
+async function deleteItem(target) {
   const parent = target.closest(".item");
   const parentId = parent.getAttribute("id");
   const url = window.location.href + "/items/" + parentId;
-  axios.delete(url)
-    .then(res => window.location.href = res.data)
+  const res = await axios.delete(url)
+  if(res.data === "delete successfully"){
+    document.getElementById(parentId).remove()
+  }
 
 }
 
