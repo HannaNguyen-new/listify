@@ -237,6 +237,6 @@ document.addEventListener("touchend", event => {
   }else if(target.matches(".transition-btn")){
     window.location.href = "/all-lists"
   }else{
-    event.returnValue = true
+    return true
   }
 })
