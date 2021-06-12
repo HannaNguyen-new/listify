@@ -17,32 +17,17 @@ show.addEventListener("click", () => {
 });
 
 // slide up and down
-const arrows = document.querySelectorAll(".arrows")
-arrows.forEach(element => 
-  element.addEventListener("click", event => {slide(event)})
-  )
-
-function slide(event) {
-  const clickedIcon = event.target;
-  console.log(clickedIcon)
-  if(isMatched(clickedIcon,[".expand",".shrink"])){
+function slide(clickedIcon) {
     const parent = clickedIcon.parentElement.parentElement;
     const children = parent.children;
     const priceDisplay = Array.from(children).filter(child => child.className === "noteTotalprice"); // priceDisplay is an array
     const sibling = clickedIcon.className.includes("expand") ? clickedIcon.nextElementSibling : clickedIcon.previousElementSibling;
     toggle([...priceDisplay, event.target, sibling], "noDisplay")
-  
-  }
-  
 }
 
 // move checked item
 const purchased = document.querySelector(".purchased")
-document.addEventListener("click", event => handleCheck(event));
-
-function handleCheck(event){
-  const node = event.target;
-  if(node.matches(".checkbox")){
+function handleCheck(node){
     const id = node.parentElement.getAttribute("id");
     const checkedItem = document.getElementById(id);
     const index = Array.from(items.children).findIndex(el => el.getAttribute("id") === id);
@@ -55,7 +40,6 @@ function handleCheck(event){
       uncheck(checkedItem, items);
       update(url, { checked: false }).then(res => purchased.innerHTML = "Purchased:￥ " + res.data[2])
     }
-  }
 
 }
 
@@ -232,13 +216,14 @@ function deleteItem(target) {
     .then(res => window.location.href = res.data)
 
 }
-const quantityPriceContainer = document.querySelectorAll(".quantity-price-container");
-quantityPriceContainer.forEach(element => {
-  element.addEventListener("click", event => {
-    const target = event.target;
-    if (target.matches(".fa-trash")) {
-      deleteItem(target)
-    }
-  })
 
+document.addEventListener("click", event => {
+  const target = event.target;
+  if(isMatched(target,[".expand",".shrink"])){
+    slide(target)
+  }else if (target.matches(".checkbox")){
+    handleCheck(target)
+  }else if(target.matches(".fa-trash")){
+    deleteItem(target)
+  }
 })
