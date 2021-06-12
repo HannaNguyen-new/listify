@@ -159,3 +159,8 @@ input[type = "checkbox"]{
 .list:visited{
     color: #A59C9C;
 }
+
+.far,
+.fas{
+    margin: 0 10px;
+}
