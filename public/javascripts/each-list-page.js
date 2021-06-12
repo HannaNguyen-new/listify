@@ -236,7 +236,7 @@ document.addEventListener("touchend", event => {
     toggle([transition, overlay], "hidden")
   }else if(target.matches(".transition-btn")){
     window.location.href = "/all-lists"
-  }else{
-    return true
+  }else if(target.matches(".list-item-input")){
+    addItem()
   }
 })
