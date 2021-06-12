@@ -17,9 +17,6 @@ show.addEventListener("click", () => {
 });
 
 // slide up and down
-// const expand = document.querySelectorAll(".expand");
-// const shrink = document.querySelectorAll(".shrink");
-// const noteAndPrice = document.querySelectorAll(".noteTotalprice");
 
 document.addEventListener("click", event => {slide(event)})
 document.addEventListener("touchend", event => {
@@ -43,6 +40,10 @@ function slide(event) {
 // move checked item
 const purchased = document.querySelector(".purchased")
 document.addEventListener("click", event => handleCheck(event));
+document.addEventListener("touchend", event => {
+  event.preventDefault();
+  handleCheck(event)
+});
 
 function handleCheck(event){
   const node = event.target;
