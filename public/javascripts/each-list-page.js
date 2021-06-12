@@ -17,8 +17,12 @@ show.addEventListener("click", () => {
 });
 
 // slide up and down
-
-document.addEventListener("click", event => {slide(event)})
+const arrows = document.querySelectorAll(".arrows")
+arrows.forEach(element => 
+  
+  element.addEventListener("click", event => {slide(event)})
+  
+  )
 // document.addEventListener("touchend", event => {
 //   event.preventDefault();  
 //   slide(event)
@@ -26,6 +30,7 @@ document.addEventListener("click", event => {slide(event)})
 
 function slide(event) {
   const clickedIcon = event.target;
+  console.log(clickedIcon)
   if(isMatched(clickedIcon,[".expand",".shrink"])){
     const parent = clickedIcon.parentElement.parentElement;
     const children = parent.children;
