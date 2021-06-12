@@ -38,9 +38,13 @@ document.addEventListener("click", event => {
 
 // move checked item
 const purchased = document.querySelector(".purchased")
-document.addEventListener("click", event => {
+document.addEventListener("click", event => handleCheck(event));
+document.addEventListener("touchend", event => {
+  event.preventDefault()
+  handleCheck(event)
+});
+function handleCheck(event){
   const node = event.target;
-  console.log(node)
   if(node.matches(".checkbox")){
     const id = node.parentElement.getAttribute("id");
     const checkedItem = document.getElementById(id);
@@ -57,7 +61,6 @@ document.addEventListener("click", event => {
   }
 
 }
-);
 
 function check(node, parent, index) {
   node.remove();
