@@ -221,7 +221,7 @@ document.addEventListener("click", event => {
   }
 })
 document.addEventListener("touchend", event => {
-  event.preventDefault()
+  //event.preventDefault()
   const target = event.target;
   if(isMatched(target,[".expand",".shrink"])){
     slide(target)
@@ -233,6 +233,5 @@ document.addEventListener("touchend", event => {
     toggle([bottomContainer, hide, show], "hidden");
   }else if(isMatched(target,[".icon",".nav-icon",".overlay"])){
     toggle([transition, overlay], "hidden")
-   
   }
 })
