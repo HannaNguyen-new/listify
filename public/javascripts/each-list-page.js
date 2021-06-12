@@ -19,10 +19,10 @@ show.addEventListener("click", () => {
 // slide up and down
 
 document.addEventListener("click", event => {slide(event)})
-document.addEventListener("touchend", event => {
-  event.preventDefault();  
-  slide(event)
-})
+// document.addEventListener("touchend", event => {
+//   event.preventDefault();  
+//   slide(event)
+// })
 
 function slide(event) {
   const clickedIcon = event.target;
@@ -40,10 +40,10 @@ function slide(event) {
 // move checked item
 const purchased = document.querySelector(".purchased")
 document.addEventListener("click", event => handleCheck(event));
-document.addEventListener("touchend", event => {
-  event.preventDefault();
-  handleCheck(event)
-});
+// document.addEventListener("touchend", event => {
+//   event.preventDefault();
+//   handleCheck(event)
+// });
 
 function handleCheck(event){
   const node = event.target;
