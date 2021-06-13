@@ -43,6 +43,7 @@
                 
             <div class="items">
                 <% if(itemArr.length > 0){ %>
+                    <% let index = 0 %>
                     <% const uncheckedArr = itemArr.filter(item => item.checked == false) %>
                     <% const checkedArr = itemArr.filter(item => item.checked == true) %>
                     <% uncheckedArr.forEach(returnedItem => { %>
@@ -51,7 +52,9 @@
                             unitPrice: returnedItem.unitPrice || 0,
                             id: returnedItem._id,
                             totalPrice: returnedItem.totalPrice,
-                            note: returnedItem.note}) %>
+                            note: returnedItem.note,
+                            index: index}) %>
+                        <%    index++ %>
                     <%  } ) %>
 
                     <% checkedArr.forEach(returnedItem => { %>
@@ -60,7 +63,9 @@
                             unitPrice: returnedItem.unitPrice || 0,
                             id: returnedItem._id,
                             totalPrice: returnedItem.totalPrice,
-                            note: returnedItem.note}) %>
+                            note: returnedItem.note,
+                            index: index}) %>
+                        <%     index++ %>    
                     <%  } ) %>
 
                 <% }else { %>
