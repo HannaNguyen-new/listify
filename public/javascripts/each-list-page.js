@@ -207,24 +207,15 @@ function isMatched(target, arr) {
   return arr.some(selector => target.matches(selector))
 }
 document.addEventListener("click", event => {
-  const target = event.target;
-  if(isMatched(target,[".expand",".shrink"])){
-    slide(target)
-  }else if (target.matches(".checkbox")){
-    handleCheck(target)
-  }else if(target.matches(".fa-trash")){
-    deleteItem(target)
-  }else if(isMatched(target,[".hide",".show"])){
-    toggle([bottomContainer, hide, show], "hidden");
-  }else if(isMatched(target,[".icon",".nav-icon",".overlay"])){
-    toggle([transition, overlay], "hidden") 
-  }else if(target.matches(".transition-btn")){
-    window.location.href = "/all-lists"
-  }
+  handleClickAndTouch(event)
 })
 document.addEventListener("touchend", event => {
+  handleClickAndTouch(event)
+})
+
+function handleClickAndTouch(event){
   const target = event.target;
-  if(!target.matches(".list-item-input")){
+  if(!isMatched(target,[".list-item-input",".item-name",".item-quantity","unit-price","noteInput"])){
     event.preventDefault()
   }
   if(isMatched(target,[".expand",".shrink"])){
@@ -240,4 +231,5 @@ document.addEventListener("touchend", event => {
   }else if(target.matches(".transition-btn")){
     window.location.href = "/all-lists"
   }
-})
+
+}
