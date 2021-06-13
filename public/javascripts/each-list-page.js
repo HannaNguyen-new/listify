@@ -215,7 +215,7 @@ document.addEventListener("touchend", event => {
 
 function handleClickAndTouch(event){
   const target = event.target;
-  if(!isMatched(target,[".list-item-input",".item-name",".item-quantity","unit-price","noteInput"])){
+  if(!isMatched(target,[".list-item-input",".item-name",".item-quantity",".unit-price",".noteInput"])){
     event.preventDefault()
   }
   if(isMatched(target,[".expand",".shrink"])){
