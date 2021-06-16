@@ -24,11 +24,10 @@ const purchased = document.querySelector(".purchased")
 function handleCheck(node){
     const id = node.parentElement.getAttribute("id");
     const checkedItem = document.getElementById(id);
-    const index = Array.from(items.children).findIndex(el => el.getAttribute("id") === id);
     const url = window.location.href + "/items/" + id;
     toggle([checkedItem], "checked");
     if (checkedItem.hasAttribute("checked")) {
-      check(checkedItem, items, index);
+      check(checkedItem, items);
       update(url, { checked: true }).then(res => purchased.innerHTML = "Purchased:￥ " + res.data[2])
     } else {
       uncheck(checkedItem, items);
@@ -40,11 +39,14 @@ function handleCheck(node){
 function check(node, parent, index) {
   node.remove();
   parent.appendChild(node);
-  node.setAttribute("oldIndex", index)
 }
 function uncheck(node, parent) {
-  const i = node.getAttribute("oldIndex")
-  parent.insertBefore(node, parent.children[i])
+ const index = node.getAttribute("index")
+ const uncheckedElements = Array.from(parent.children).filter(child => !child.hasAttribute("checked"))
+ const indexArr = Array.from(uncheckedElements).map(child => child.getAttribute("index"))
+ const smallestNextIndex = indexArr.find(i => i > index)
+ const smallestNextSibling = Array.from(parent.children).find(child => child.getAttribute("index") === smallestNextIndex)
+  parent.insertBefore(node, smallestNextSibling)
 }
 
 // all-list transition slide
@@ -120,6 +122,7 @@ const addItem = async () => {
         itemQuantity.value = 1;
         unitPrice.value = 0;
         newItem.setAttribute("id", res.data._id)
+        newItem.setAttribute("index", items.children.length)
         items.appendChild(newItem)
       }
     }
@@ -160,6 +163,7 @@ async function updateItem(node) {
     .then(res => {
       updatedTotalPrice.innerHTML = res.data[0].itemQuantity * res.data[0].unitPrice;
       toBuy.innerHTML = "Plan to buy: ￥ " + res.data[1]
+      purchased.innerHTML = "Purchased:￥ " + res.data[2]
     })
     .catch(err => console.log(err));
 
