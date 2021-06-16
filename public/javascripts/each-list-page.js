@@ -24,11 +24,11 @@ const purchased = document.querySelector(".purchased")
 function handleCheck(node){
     const id = node.parentElement.getAttribute("id");
     const checkedItem = document.getElementById(id);
-    const index = Array.from(items.children).findIndex(el => el.getAttribute("id") === id);
+    //const index = Array.from(items.children).findIndex(el => el.getAttribute("id") === id);
     const url = window.location.href + "/items/" + id;
     toggle([checkedItem], "checked");
     if (checkedItem.hasAttribute("checked")) {
-      check(checkedItem, items, index);
+      check(checkedItem, items);
       update(url, { checked: true }).then(res => purchased.innerHTML = "Purchased:￥ " + res.data[2])
     } else {
       uncheck(checkedItem, items);
@@ -40,11 +40,12 @@ function handleCheck(node){
 function check(node, parent, index) {
   node.remove();
   parent.appendChild(node);
-  node.setAttribute("oldIndex", index)
+ // node.setAttribute("oldIndex", index)
 }
 function uncheck(node, parent) {
-  const i = node.getAttribute("oldIndex")
-  parent.insertBefore(node, parent.children[i])
+ // const i = node.getAttribute("oldIndex")
+ const index = node.getAttribute("index")
+  parent.insertBefore(node, parent.children[index])
 }
 
 // all-list transition slide
